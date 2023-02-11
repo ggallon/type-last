@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next"
 import * as z from "zod"
-import { unstable_getServerSession } from "next-auth/next"
+import { getServerSession } from "next-auth/next"
 
 import { db } from "@/lib/db"
 import { withMethods } from "@/lib/api-middlewares/with-methods"
@@ -11,7 +11,7 @@ import { authOptions } from "@/lib/auth"
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "PATCH") {
     try {
-      const session = await unstable_getServerSession(req, res, authOptions)
+      const session = await getServerSession(req, res, authOptions)
       const user = session?.user
 
       const body = req.body
