@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next"
-import { unstable_getServerSession } from "next-auth/next"
+import { getServerSession } from "next-auth/next"
 
 import { proPlan } from "@/config/subscriptions"
 import { withMethods } from "@/lib/api-middlewares/with-methods"
@@ -14,7 +14,7 @@ const billingUrl = absoluteUrl("/dashboard/billing")
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "GET") {
     try {
-      const session = await unstable_getServerSession(req, res, authOptions)
+      const session = await getServerSession(req, res, authOptions)
       const user = session.user
       const subscriptionPlan = await getUserSubscriptionPlan(user.id)
 
