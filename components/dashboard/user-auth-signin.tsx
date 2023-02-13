@@ -42,11 +42,11 @@ export function UserAuthSignin({ className, ...props }: UserAuthSigninProps) {
         message: "Your sign in request failed. Please try again.",
         type: "error",
       })
-    }
-    // we're logged in! let's do a hard refresh to the desired url
-    else if (!signInResult.error) router.push(callbackUrl);
-    // fallback if error not found
-    else {
+    } else if (!signInResult.error) {
+      // we're logged in! let's do a hard refresh to the desired url
+      await router.push(callbackUrl)
+    } else {
+      // fallback if error not found
       return toast({
         title: "Something went wrong.",
         message: "Very bad trip.....",
