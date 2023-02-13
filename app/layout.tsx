@@ -1,12 +1,12 @@
 import { Inter as FontSans } from "@next/font/google"
 
-import "@/styles/globals.css"
-
+import { Analytics } from "@/components/analytics"
+import { Help } from "@/components/help"
+import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { cn } from "@/lib/utils"
 import { Toaster } from "@/ui/toast"
-import { Help } from "@/components/help"
-import { Analytics } from "@/components/analytics"
-import { TailwindIndicator } from "@/components/tailwind-indicator"
+
+import "@/styles/globals.css"
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -30,7 +30,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body className="min-h-screen">
         {children}
         <Analytics />
-        <Help />
+        {process.env.NODE_ENV === "production" && <Help />}
         <Toaster position="bottom-right" />
         <TailwindIndicator />
       </body>
