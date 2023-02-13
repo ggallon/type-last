@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation"
 import { cache } from "react"
 
-import { db } from "@/lib/db"
+import prisma from "@/lib/db"
 import { getCurrentUser } from "@/lib/session"
 import { User } from "@prisma/client"
 import { authOptions } from "@/lib/auth"
@@ -12,7 +12,7 @@ import { PostItem } from "@/components/dashboard/post-item"
 import { EmptyPlaceholder } from "@/components/dashboard/empty-placeholder"
 
 const getPostsForUser = cache(async (userId: User["id"]) => {
-  return await db.post.findMany({
+  return await prisma.post.findMany({
     where: {
       authorId: userId,
     },

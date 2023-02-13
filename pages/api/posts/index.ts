@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next"
 import * as z from "zod"
 import { getServerSession } from "next-auth/next"
 
-import { db } from "@/lib/db"
+import prisma from "@/lib/db"
 import { withMethods } from "@/lib/api-middlewares/with-methods"
 import { getUserSubscriptionPlan } from "@/lib/subscription"
 import { RequiresProPlanError } from "@/lib/exceptions"
@@ -24,7 +24,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
   if (req.method === "GET") {
     try {
-      const posts = await db.post.findMany({
+      const posts = await prisma.post.findMany({
         select: {
           id: true,
           title: true,
@@ -49,7 +49,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       // If user is on a free plan.
       // Check if user has reached limit of 3 posts.
       if (!subscriptionPlan?.isPro) {
-        const count = await db.post.count({
+        const count = await prisma.post.count({
           where: {
             authorId: user.id,
           },
@@ -62,7 +62,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
       const body = postCreateSchema.parse(req.body)
 
-      const post = await db.post.create({
+      const post = await prisma.post.create({
         data: {
           title: body.title,
           content: body.content,

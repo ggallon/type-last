@@ -1,13 +1,13 @@
 import { notFound, redirect } from "next/navigation"
 
 import { Post, User } from "@prisma/client"
-import { db } from "@/lib/db"
+import prisma from "@/lib/db"
 import { getCurrentUser } from "@/lib/session"
 import { authOptions } from "@/lib/auth"
 import { Editor } from "@/components/dashboard/editor"
 
 async function getPostForUser(postId: Post["id"], userId: User["id"]) {
-  return await db.post.findFirst({
+  return await prisma.post.findFirst({
     where: {
       id: postId,
       authorId: userId,
