@@ -3,13 +3,13 @@ import * as z from "zod"
 
 import { withMethods } from "@/lib/api-middlewares/with-methods"
 import { withPost } from "@/lib/api-middlewares/with-post"
-import { db } from "@/lib/db"
+import prisma from "@/lib/db"
 import { postPatchSchema } from "@/lib/validations/post"
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "DELETE") {
     try {
-      await db.post.delete({
+      await prisma.post.delete({
         where: {
           id: req.query.postId as string,
         },
@@ -24,7 +24,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "PATCH") {
     try {
       const postId = req.query.postId as string
-      const post = await db.post.findUnique({
+      const post = await prisma.post.findUnique({
         where: {
           id: postId,
         },
@@ -34,7 +34,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
       // TODO: Implement sanitization for content.
 
-      await db.post.update({
+      await prisma.post.update({
         where: {
           id: post.id,
         },

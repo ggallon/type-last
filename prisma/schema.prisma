@@ -2,7 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["extendedWhereUnique"]
 }
 
 datasource db {
@@ -44,14 +45,22 @@ model Session {
   @@index([userId])
 }
 
+enum IdentityProvider {
+  PROACTICE
+  GITHUB
+}
+
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  id                 String           @id @default(cuid())
+  name               String?
+  email              String?          @unique
+  emailVerified      DateTime?
+  image              String?
+  password           String?
+  identityProvider   IdentityProvider @default(PROACTICE)
+  identityProviderId String?
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
 
   accounts Account[]
   sessions Session[]

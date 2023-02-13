@@ -1,11 +1,11 @@
 import { UserSubscriptionPlan } from "types"
 import { freePlan, proPlan } from "@/config/subscriptions"
-import { db } from "@/lib/db"
+import prisma from "@/lib/db"
 
 export async function getUserSubscriptionPlan(
   userId: string
 ): Promise<UserSubscriptionPlan> {
-  const user = await db.user.findFirst({
+  const user = await prisma.user.findFirst({
     where: {
       id: userId,
     },
