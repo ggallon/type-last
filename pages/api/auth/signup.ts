@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next"
 
 import { withMethods } from "@/lib/api-middlewares/with-methods"
 import { withValidation } from "@/lib/api-middlewares/with-validation"
-import prisma, { type IdentityProvider } from "@/lib/db"
+import prisma, { IdentityProvider } from "@/lib/db"
 import { hashPassword } from "@/lib/password"
 import { userAuthSchema } from "@/lib/validations/auth"
 
@@ -16,7 +16,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { email: userEmail, password } = data
 
   // There is actually an existingUser if email matches
-  const existingUser = await db.user.findUnique({
+  const existingUser = await prisma.user.findUnique({
     where: {
       email: userEmail,
     },
@@ -33,7 +33,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
   try {
     const hashedPassword = await hashPassword(password)
-    await db.user.create({
+    await prisma.user.create({
       data: {
         email: userEmail,
         password: hashedPassword,
