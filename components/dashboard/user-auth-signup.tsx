@@ -12,7 +12,7 @@ import { userAuthSchema } from "@/lib/validations/auth"
 import { toast } from "@/ui/toast"
 import { Icons } from "@/components/icons"
 
-interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> { }
+interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 type FormData = z.infer<typeof userAuthSchema>
 
@@ -28,10 +28,10 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 
   const handleErrors = async (resp: Response) => {
     if (!resp.ok) {
-      const err = await resp.json();
-      throw new Error(err.message);
+      const err = await resp.json()
+      throw new Error(err.message)
     }
-  };
+  }
 
   const signUp: SubmitHandler<FormData> = async (data) => {
     await fetch("/api/auth/signup", {
@@ -51,14 +51,14 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         })
       })
       .catch((err) => {
-        console.error(`SubmitHandler:Error: ${err.message}`);
+        console.error(`SubmitHandler:Error: ${err.message}`)
         return toast({
           title: "Something went wrong.",
           message: "Your sign up request failed. Please try again.",
           type: "error",
         })
       })
-  };
+  }
 
   return (
     <div className={cn("grid gap-6", className)} {...props}>

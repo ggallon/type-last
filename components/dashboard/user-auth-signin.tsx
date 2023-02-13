@@ -12,12 +12,12 @@ import { userAuthSchema } from "@/lib/validations/auth"
 import { toast } from "@/ui/toast"
 import { Icons } from "@/components/icons"
 
-interface UserAuthSigninProps extends React.HTMLAttributes<HTMLDivElement> { }
+interface UserAuthSigninProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 type FormData = z.infer<typeof userAuthSchema>
 
 export function UserAuthSignin({ className, ...props }: UserAuthSigninProps) {
-  const router = useRouter();
+  const router = useRouter()
   const {
     register,
     handleSubmit,
@@ -52,7 +52,7 @@ export function UserAuthSignin({ className, ...props }: UserAuthSigninProps) {
         message: "Very bad trip.....",
         type: "error",
       })
-    };
+    }
   }
 
   return (
