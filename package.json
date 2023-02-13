@@ -8,11 +8,13 @@
   },
   "scripts": {
     "dev": "next dev",
-    "turbo": "next dev --turbo",
     "build": "next build",
     "start": "next start",
     "lint": "TIMING=1 next lint",
-    "preview": "next build && next start",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push --skip-generate",
+    "db:studio": "prisma studio",
+    "db:format": "prisma format",
     "postinstall": "prisma generate",
     "type-check": "tsc --noEmit"
   },
