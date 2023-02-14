@@ -28,6 +28,11 @@ export type SidebarNavItem = {
 
 export type SiteConfig = {
   name: string
+  domain: string
+  creator: {
+    name: string
+    twitter: string
+  }
   links: {
     twitter: string
     github: string

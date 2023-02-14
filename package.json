@@ -1,11 +1,7 @@
 {
-  "name": "taxonomy",
+  "name": "type-last",
   "version": "0.1.0",
   "private": true,
-  "author": {
-    "name": "shadcn",
-    "url": "https://twitter.com/shadcn"
-  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
