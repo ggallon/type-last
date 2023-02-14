@@ -18,6 +18,7 @@ export const authOptions: NextAuthOptions = {
     GitHubProvider({
       clientId: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
+      allowDangerousEmailAccountLinking: true,
     }),
     CredentialsProvider({
       id: "credentials",
@@ -174,6 +175,7 @@ export const authOptions: NextAuthOptions = {
             name: user.name,
             email: user.email,
             emailVerified: new Date(Date.now()),
+            image: user.image,
             identityProvider: idP,
             identityProviderId: String(user.id),
             accounts: {
@@ -206,7 +208,6 @@ export const authOptions: NextAuthOptions = {
           id: true,
           name: true,
           email: true,
-          image: true,
         },
       })
 
