@@ -1,7 +1,11 @@
 import Link from "next/link"
 
 import { Icons } from "@/components/icons"
-import { UserAuthForm } from "@/components/dashboard/user-auth-form"
+import { UserAuthSignin } from "@/components/dashboard/user-auth-signin"
+
+export const metadata = {
+  title: "Login",
+}
 
 export default function LoginPage() {
   return (
@@ -23,9 +27,9 @@ export default function LoginPage() {
             Enter your email to sign in to your account
           </p>
         </div>
-        <UserAuthForm />
+        <UserAuthSignin />
         <p className="px-8 text-center text-sm text-slate-600">
-          <Link href="/register" className="underline hover:text-brand">
+          <Link href="/signup" className="underline hover:text-brand">
             Don&apos;t have an account? Sign Up
           </Link>
         </p>

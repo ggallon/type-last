@@ -1,18 +1,17 @@
 import { User } from "next-auth"
 import { JWT } from "next-auth/jwt"
-
-type UserId = string
+import type { User as PrismaUser } from "@/lib/db"
 
 declare module "next-auth/jwt" {
   interface JWT {
-    id: UserId
+    id: PrismaUser["id"]
   }
 }
 
 declare module "next-auth" {
   interface Session {
     user: User & {
-      id: UserId
+      id: PrismaUser["id"]
     }
   }
 }

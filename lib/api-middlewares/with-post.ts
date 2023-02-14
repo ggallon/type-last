@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth/next"
 import * as z from "zod"
 
 import { authOptions } from "@/lib/auth"
-import { db } from "@/lib/db"
+import prisma from "@/lib/db"
 
 export const schema = z.object({
   postId: z.string(),
@@ -16,7 +16,7 @@ export function withPost(handler: NextApiHandler) {
 
       // Check if the user has access to this post.
       const session = await getServerSession(req, res, authOptions)
-      const count = await db.post.count({
+      const count = await prisma.post.count({
         where: {
           id: query.postId,
           authorId: session.user.id,

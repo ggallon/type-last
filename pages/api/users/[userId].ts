@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next"
 import * as z from "zod"
 import { getServerSession } from "next-auth/next"
 
-import { db } from "@/lib/db"
+import prisma from "@/lib/db"
 import { withMethods } from "@/lib/api-middlewares/with-methods"
 import { withCurrentUser } from "@/lib/api-middlewares/with-current-user"
 import { userNameSchema } from "@/lib/validations/user"
@@ -19,7 +19,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       if (body?.name) {
         const payload = userNameSchema.parse(body)
 
-        await db.user.update({
+        await prisma.user.update({
           where: {
             id: user.id,
           },

@@ -6,6 +6,10 @@ import { DashboardHeader } from "@/components/dashboard/header"
 import { DashboardShell } from "@/components/dashboard/shell"
 import { UserNameForm } from "@/components/dashboard/user-name-form"
 
+export const metadata = {
+  title: "User Settings",
+}
+
 export default async function SettingsPage() {
   const user = await getCurrentUser()
 

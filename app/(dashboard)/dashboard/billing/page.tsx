@@ -9,6 +9,10 @@ import { DashboardHeader } from "@/components/dashboard/header"
 import { DashboardShell } from "@/components/dashboard/shell"
 import { BillingForm } from "@/components/dashboard/billing-form"
 
+export const metadata = {
+  title: "User Billing",
+}
+
 export default async function BillingPage() {
   const user = await getCurrentUser()
 
