@@ -2,7 +2,7 @@ import { SiteConfig } from "types"
 
 export const siteConfig: SiteConfig = {
   name: "Proactice",
-  domain: "proactice.co"
+  domain: "proactice.co",
   creator: {
     name: "Gwennaël Gallon",
     twitter: "@gwengallon",

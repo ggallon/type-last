@@ -165,8 +165,8 @@ export default async function IndexPage() {
         </div>
         <div className="mx-auto flex flex-col gap-4 md:max-w-[52rem]">
           <p className="max-w-[85%] leading-normal text-slate-700 sm:text-lg sm:leading-7">
-            {siteConfig.name} also includes a blog and a full-featured documentation site
-            built using Contentlayer and MDX.
+            {siteConfig.name} also includes a blog and a full-featured
+            documentation site built using Contentlayer and MDX.
           </p>
         </div>
       </section>
@@ -177,8 +177,8 @@ export default async function IndexPage() {
             Proudly Open Source
           </h2>
           <p className="max-w-[85%] leading-normal text-slate-700 sm:text-lg sm:leading-7">
-            {siteConfig.name} is open source and powered by open source software. The
-            code is available on{" "}
+            {siteConfig.name} is open source and powered by open source
+            software. The code is available on{" "}
             <Link
               href={siteConfig.links.github}
               target="_blank"
