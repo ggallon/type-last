@@ -3,6 +3,7 @@ import { Inter as FontSans } from "@next/font/google"
 import { Analytics } from "@/components/analytics"
 import { Help } from "@/components/help"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
+import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 import { Toaster } from "@/ui/toast"
 
@@ -15,8 +16,8 @@ const fontSans = FontSans({
 
 export const metadata = {
   title: {
-    default: "Proactice",
-    template: "%s | Proactice",
+    default: siteConfig.name,
+    template: `%s | ${siteConfig.name}`,
   },
   description:
     "An open source application built using the new router, server components and everything new in Next.js 13.",

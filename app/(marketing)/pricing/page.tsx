@@ -1,6 +1,7 @@
 import Link from "next/link"
 
 import { Icons } from "@/components/icons"
+import { siteConfig } from "@/config/site"
 
 export default function PricingPage() {
   return (
@@ -55,7 +56,7 @@ export default function PricingPage() {
       </div>
       <div className="mx-auto flex w-full flex-col gap-4 md:max-w-[52rem]">
         <p className="max-w-[85%] leading-normal text-slate-700 sm:leading-7">
-          Taxonomy is a demo app.{" "}
+          {siteConfig.name} is a demo app.{" "}
           <strong>You can test the upgrade and won&apos;t be charged.</strong>
         </p>
       </div>
