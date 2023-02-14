@@ -19,6 +19,10 @@ interface EditorPageProps {
   params: { postId: string }
 }
 
+export const metadata = {
+  title: "Editor",
+}
+
 export default async function EditorPage({ params }: EditorPageProps) {
   const user = await getCurrentUser()
 

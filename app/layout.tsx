@@ -13,6 +13,15 @@ const fontSans = FontSans({
   variable: "--font-inter",
 })
 
+export const metadata = {
+  title: {
+    default: "Proactice",
+    template: "%s | Proactice",
+  },
+  description:
+    "An open source application built using the new router, server components and everything new in Next.js 13.",
+}
+
 interface RootLayoutProps {
   children: React.ReactNode
 }

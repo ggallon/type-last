@@ -5,6 +5,10 @@ import { allGuides } from "contentlayer/generated"
 import { DocsPageHeader } from "@/components/docs/page-header"
 import { formatDate } from "@/lib/utils"
 
+export const metadata = {
+  title: "Guides",
+}
+
 export default function GuidesPage() {
   const guides = allGuides
     .filter((guide) => guide.published)

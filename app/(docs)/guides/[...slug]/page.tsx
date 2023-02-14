@@ -4,6 +4,7 @@ import { notFound } from "next/navigation"
 import { allGuides } from "contentlayer/generated"
 
 import { getTableOfContents } from "@/lib/toc"
+import { absoluteUrl } from "@/lib/utils"
 import { Mdx } from "@/components/docs/mdx"
 import { DashboardTableOfContents } from "@/components/docs/toc"
 import { DocsPageHeader } from "@/components/docs/page-header"
@@ -22,6 +23,47 @@ export async function generateStaticParams(): Promise<
   return allGuides.map((guide) => ({
     slug: guide.slugAsParams.split("/"),
   }))
+}
+
+export async function generateMetadata({ params }) {
+  const slug = params?.slug?.join("/") || ""
+  const mdxDoc = allGuides.find((doc) => doc.slugAsParams === slug)
+
+  if (!mdxDoc) {
+    return null
+  }
+
+  const { title, description } = mdxDoc
+
+  const url = process.env.NEXT_PUBLIC_APP_URL
+  let ogUrl = new URL(`${url}/og.jpg`)
+
+  ogUrl = new URL(`${url}/api/og`)
+  ogUrl.searchParams.set("heading", title)
+  ogUrl.searchParams.set("type", "Guide")
+  ogUrl.searchParams.set("mode", "dark")
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: absoluteUrl(mdxDoc.slug),
+    },
+    openGraph: {
+      title,
+      description,
+      images: [`${ogUrl.toString()}`],
+      url: url,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      url: url,
+      images: [`${ogUrl.toString()}`],
+    },
+  }
 }
 
 export default async function GuidePage({ params }: GuidePageProps) {
