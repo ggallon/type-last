@@ -6,6 +6,13 @@ import { DashboardNav } from "@/components/dashboard/nav"
 import { UserAccountNav } from "@/components/dashboard/user-account-nav"
 import { MainNav } from "@/components/main-nav"
 
+export const metadata = {
+  title: {
+    default: "Dashboard",
+    template: "%s | Dashboard",
+  },
+}
+
 interface DashboardLayoutProps {
   children?: React.ReactNode
 }
