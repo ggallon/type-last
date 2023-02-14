@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next"
 import * as z from "zod"
-
 import { withMethods } from "@/lib/api-middlewares/with-methods"
 import { withPost } from "@/lib/api-middlewares/with-post"
 import prisma from "@/lib/db"

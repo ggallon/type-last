@@ -1,5 +1,5 @@
-import { siteConfig } from "@/config/site"
 import { Icons } from "@/components/icons"
+import { siteConfig } from "@/config/site"
 
 export function SiteFooter() {
   return (

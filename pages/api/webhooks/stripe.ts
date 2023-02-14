@@ -1,9 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next"
-import Stripe from "stripe"
 import rawBody from "raw-body"
-
-import { stripe } from "@/lib/stripe"
+import Stripe from "stripe"
 import prisma from "@/lib/db"
+import { stripe } from "@/lib/stripe"
 
 export const config = {
   api: {

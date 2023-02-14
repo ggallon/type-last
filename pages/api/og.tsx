@@ -1,7 +1,7 @@
+import { NextRequest } from "next/server"
+import { ImageResponse } from "@vercel/og"
 import { siteConfig } from "@/config/site"
 import { ogImageSchema } from "@/lib/validations/og"
-import { ImageResponse } from "@vercel/og"
-import { NextRequest } from "next/server"
 
 export const config = {
   runtime: "edge",

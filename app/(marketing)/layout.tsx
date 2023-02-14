@@ -1,8 +1,7 @@
 import Link from "next/link"
-
-import { marketingConfig } from "@/config/marketing"
 import { MainNav } from "@/components/main-nav"
 import { SiteFooter } from "@/components/site-footer"
+import { marketingConfig } from "@/config/marketing"
 
 interface MarketingLayoutProps {
   children: React.ReactNode

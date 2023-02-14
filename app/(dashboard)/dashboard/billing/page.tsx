@@ -1,14 +1,13 @@
 import { redirect } from "next/navigation"
-
-import { siteConfig } from "@/config/site"
-import { getCurrentUser } from "@/lib/session"
-import { authOptions } from "@/lib/auth"
-import { stripe } from "@/lib/stripe"
-import { getUserSubscriptionPlan as getUserSubscriptionPlan } from "@/lib/subscription"
-import { Card } from "@/ui/card"
+import { BillingForm } from "@/components/dashboard/billing-form"
 import { DashboardHeader } from "@/components/dashboard/header"
 import { DashboardShell } from "@/components/dashboard/shell"
-import { BillingForm } from "@/components/dashboard/billing-form"
+import { Card } from "@/ui/card"
+import { siteConfig } from "@/config/site"
+import { authOptions } from "@/lib/auth"
+import { getCurrentUser } from "@/lib/session"
+import { stripe } from "@/lib/stripe"
+import { getUserSubscriptionPlan } from "@/lib/subscription"
 
 export const metadata = {
   title: "User Billing",

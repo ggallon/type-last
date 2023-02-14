@@ -1,14 +1,12 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
-
 import { allGuides } from "contentlayer/generated"
-
+import { Mdx } from "@/components/docs/mdx"
+import { DocsPageHeader } from "@/components/docs/page-header"
+import { DashboardTableOfContents } from "@/components/docs/toc"
+import { Icons } from "@/components/icons"
 import { getTableOfContents } from "@/lib/toc"
 import { absoluteUrl } from "@/lib/utils"
-import { Mdx } from "@/components/docs/mdx"
-import { DashboardTableOfContents } from "@/components/docs/toc"
-import { DocsPageHeader } from "@/components/docs/page-header"
-import { Icons } from "@/components/icons"
 import "@/styles/mdx.css"
 
 interface GuidePageProps {

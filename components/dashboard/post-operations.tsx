@@ -3,12 +3,11 @@
 import * as React from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { Post } from "@prisma/client"
-
-import { DropdownMenu } from "@/ui/dropdown"
 import { Icons } from "@/components/icons"
 import { Alert } from "@/ui/alert"
+import { DropdownMenu } from "@/ui/dropdown"
 import { toast } from "@/ui/toast"
+import { type Post } from "@/lib/db"
 
 async function deletePost(postId: string) {
   const response = await fetch(`/api/posts/${postId}`, {
