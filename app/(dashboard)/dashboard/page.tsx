@@ -1,15 +1,13 @@
-import { redirect } from "next/navigation"
 import { cache } from "react"
-
-import prisma from "@/lib/db"
-import { getCurrentUser } from "@/lib/session"
-import { User } from "@prisma/client"
-import { authOptions } from "@/lib/auth"
+import { redirect } from "next/navigation"
+import { EmptyPlaceholder } from "@/components/dashboard/empty-placeholder"
 import { DashboardHeader } from "@/components/dashboard/header"
 import { PostCreateButton } from "@/components/dashboard/post-create-button"
-import { DashboardShell } from "@/components/dashboard/shell"
 import { PostItem } from "@/components/dashboard/post-item"
-import { EmptyPlaceholder } from "@/components/dashboard/empty-placeholder"
+import { DashboardShell } from "@/components/dashboard/shell"
+import { authOptions } from "@/lib/auth"
+import prisma, { type User } from "@/lib/db"
+import { getCurrentUser } from "@/lib/session"
 
 const getPostsForUser = cache(async (userId: User["id"]) => {
   return await prisma.post.findMany({

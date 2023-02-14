@@ -1,12 +1,10 @@
 import { Inter as FontSans } from "@next/font/google"
-
 import { Analytics } from "@/components/analytics"
 import { Help } from "@/components/help"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
+import { Toaster } from "@/ui/toast"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
-import { Toaster } from "@/ui/toast"
-
 import "@/styles/globals.css"
 
 const fontSans = FontSans({

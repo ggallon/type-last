@@ -1,6 +1,5 @@
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from "next"
 import { getServerSession } from "next-auth/next"
-
 import { authOptions } from "@/lib/auth"
 
 export function withAuthentication(handler: NextApiHandler) {

@@ -1,12 +1,11 @@
 import Link from "next/link"
-
-import { siteConfig } from "@/config/site"
-import { docsConfig } from "@/config/docs"
+import { DocsSearch } from "@/components/docs/search"
+import { DocsSidebarNav } from "@/components/docs/sidebar-nav"
 import { Icons } from "@/components/icons"
 import { MainNav } from "@/components/main-nav"
-import { DocsSearch } from "@/components/docs/search"
 import { SiteFooter } from "@/components/site-footer"
-import { DocsSidebarNav } from "@/components/docs/sidebar-nav"
+import { docsConfig } from "@/config/docs"
+import { siteConfig } from "@/config/site"
 
 interface DocsLayoutProps {
   children: React.ReactNode

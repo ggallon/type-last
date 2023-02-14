@@ -1,12 +1,11 @@
 import { NextApiRequest, NextApiResponse } from "next"
-import * as z from "zod"
 import { getServerSession } from "next-auth/next"
-
-import prisma from "@/lib/db"
+import * as z from "zod"
 import { withMethods } from "@/lib/api-middlewares/with-methods"
-import { getUserSubscriptionPlan } from "@/lib/subscription"
-import { RequiresProPlanError } from "@/lib/exceptions"
 import { authOptions } from "@/lib/auth"
+import prisma from "@/lib/db"
+import { RequiresProPlanError } from "@/lib/exceptions"
+import { getUserSubscriptionPlan } from "@/lib/subscription"
 
 const postCreateSchema = z.object({
   title: z.string().optional(),

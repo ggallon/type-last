@@ -1,9 +1,8 @@
-import { Post } from "@prisma/client"
 import Link from "next/link"
-
-import { formatDate } from "@/lib/utils"
 import { PostOperations } from "@/components/dashboard/post-operations"
 import { Skeleton } from "@/ui/skeleton"
+import { type Post } from "@/lib/db"
+import { formatDate } from "@/lib/utils"
 
 interface PostItemProps {
   post: Pick<Post, "id" | "title" | "published" | "createdAt">

@@ -1,12 +1,11 @@
 import { notFound } from "next/navigation"
 import { allDocs } from "contentlayer/generated"
-
-import { getTableOfContents } from "@/lib/toc"
-import { absoluteUrl } from "@/lib/utils"
 import { Mdx } from "@/components/docs/mdx"
-import { DashboardTableOfContents } from "@/components/docs/toc"
 import { DocsPageHeader } from "@/components/docs/page-header"
 import { DocsPager } from "@/components/docs/pager"
+import { DashboardTableOfContents } from "@/components/docs/toc"
+import { getTableOfContents } from "@/lib/toc"
+import { absoluteUrl } from "@/lib/utils"
 import "@/styles/mdx.css"
 
 interface DocPageProps {

@@ -1,6 +1,5 @@
 import Image, { ImageProps } from "next/image"
 import * as AvatarPrimitive from "@radix-ui/react-avatar"
-
 import { cn } from "@/lib/utils"
 
 type AvatarProps = AvatarPrimitive.AvatarProps

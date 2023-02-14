@@ -1,8 +1,7 @@
-import * as z from "zod"
 import { allDocuments } from "contentlayer/generated"
-
-import { ogImageSchema } from "@/lib/validations/og"
+import * as z from "zod"
 import { absoluteUrl } from "@/lib/utils"
+import { ogImageSchema } from "@/lib/validations/og"
 
 interface MdxHeadProps {
   params: {

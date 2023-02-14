@@ -1,10 +1,9 @@
 import { redirect } from "next/navigation"
-
-import { getCurrentUser } from "@/lib/session"
-import { authOptions } from "@/lib/auth"
 import { DashboardHeader } from "@/components/dashboard/header"
 import { DashboardShell } from "@/components/dashboard/shell"
 import { UserNameForm } from "@/components/dashboard/user-name-form"
+import { authOptions } from "@/lib/auth"
+import { getCurrentUser } from "@/lib/session"
 
 export const metadata = {
   title: "User Settings",

@@ -1,12 +1,11 @@
+import Image from "next/image"
+import Link from "next/link"
 import { notFound } from "next/navigation"
 import { allAuthors, allPosts } from "contentlayer/generated"
-
 import { Mdx } from "@/components/docs/mdx"
-import "@/styles/mdx.css"
-import { formatDate } from "@/lib/utils"
-import Link from "next/link"
 import { Icons } from "@/components/icons"
-import Image from "next/image"
+import { formatDate } from "@/lib/utils"
+import "@/styles/mdx.css"
 
 interface PostPageProps {
   params: {

@@ -2,15 +2,14 @@
 
 import * as React from "react"
 import { useSearchParams } from "next/navigation"
-import { signIn } from "next-auth/react"
-import * as z from "zod"
-import { useForm, type SubmitHandler } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-
+import { signIn } from "next-auth/react"
+import { type SubmitHandler, useForm } from "react-hook-form"
+import * as z from "zod"
+import { Icons } from "@/components/icons"
+import { toast } from "@/ui/toast"
 import { cn } from "@/lib/utils"
 import { userAuthSchema } from "@/lib/validations/auth"
-import { toast } from "@/ui/toast"
-import { Icons } from "@/components/icons"
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
