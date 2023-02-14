@@ -109,7 +109,7 @@ dependencies:
   react-hook-form: 7.43.1_react@18.2.0
   react-hot-toast: 2.4.0_biqbaboplfbrettd7655fr4n2y
   react-icons: 4.7.1_react@18.2.0
-  react-textarea-autosize: 8.4.0_3stiutgnnbnfnf3uowm5cip22i
+  react-textarea-autosize: 8.4.0_pmekkgnqduwlme35zpnqhenc34
   sharp: 0.31.3
   shiki: 0.14.1
   stripe: 11.10.0
