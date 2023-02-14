@@ -4,8 +4,16 @@ import Link from "next/link"
 import { User } from "next-auth"
 import { signOut } from "next-auth/react"
 import { UserAvatar } from "@/components/dashboard/user-avatar"
-import { DropdownMenu } from "@/ui/dropdown"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuPortal,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/ui/dropdown"
 import { siteConfig } from "@/config/site"
+import { Button } from "@/ui/button"
 
 interface UserAccountNavProps extends React.HTMLAttributes<HTMLDivElement> {
   user: Pick<User, "name" | "image" | "email">
@@ -14,44 +22,34 @@ interface UserAccountNavProps extends React.HTMLAttributes<HTMLDivElement> {
 export function UserAccountNav({ user }: UserAccountNavProps) {
   return (
     <DropdownMenu>
-      <DropdownMenu.Trigger className="flex items-center gap-2 overflow-hidden focus:ring-2 focus:ring-brand-900 focus:ring-offset-2 focus-visible:outline-none">
+      <DropdownMenuTrigger className="flex items-center gap-2 overflow-hidden focus:ring-2 focus:ring-brand-900 focus:ring-offset-2 focus-visible:outline-none">
         <UserAvatar user={{ name: user.name, image: user.image }} />
-      </DropdownMenu.Trigger>
-      <DropdownMenu.Portal>
-        <DropdownMenu.Content className="mt-2 md:w-[240px]" align="end">
-          <div className="flex items-center justify-start gap-2 p-4">
-            <div className="flex flex-col space-y-1 leading-none">
-              {user.name && <p className="font-medium">{user.name}</p>}
-              {user.email && (
-                <p className="w-[200px] truncate text-sm text-slate-600">
-                  {user.email}
-                </p>
-              )}
-            </div>
-          </div>
-          <DropdownMenu.Separator />
-          <DropdownMenu.Item>
+      </DropdownMenuTrigger>
+      <DropdownMenuPortal>
+        <DropdownMenuContent className="mt-2 md:w-[240px]" align="end">
+          <DropdownMenuItem>
             <Link href="/dashboard" className="w-full">
               Dashboard
             </Link>
-          </DropdownMenu.Item>
-          <DropdownMenu.Item>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>
             <Link href="/dashboard/billing" className="w-full">
               Billing
             </Link>
-          </DropdownMenu.Item>
-          <DropdownMenu.Item>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
             <Link href="/dashboard/settings" className="w-full">
               Settings
             </Link>
-          </DropdownMenu.Item>
-          <DropdownMenu.Separator />
-          <DropdownMenu.Item>
-            <Link href="/docs" target="_blank" className="w-full">
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>
+            <Link href="/docs" className="w-full">
               Documentation
             </Link>
-          </DropdownMenu.Item>
-          <DropdownMenu.Item>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
             <Link
               href={siteConfig.links.github}
               className="w-full"
@@ -59,9 +57,9 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
             >
               GitHub
             </Link>
-          </DropdownMenu.Item>
-          <DropdownMenu.Separator />
-          <DropdownMenu.Item
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem
             className="cursor-pointer"
             onSelect={(event) => {
               event.preventDefault()
@@ -70,10 +68,16 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
               })
             }}
           >
-            Sign out
-          </DropdownMenu.Item>
-        </DropdownMenu.Content>
-      </DropdownMenu.Portal>
+            Log Out
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem
+            className="flex items-center justify-center"
+          >
+            <Button size="sm" className="w-full">Upgrade to Pro</Button>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenuPortal>
     </DropdownMenu>
   )
 }
