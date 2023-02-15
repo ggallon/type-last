@@ -4,6 +4,7 @@ import Link from "next/link"
 import { User } from "next-auth"
 import { signOut } from "next-auth/react"
 import { UserAvatar } from "@/components/dashboard/user-avatar"
+import { Button } from "@/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,7 +14,6 @@ import {
   DropdownMenuTrigger,
 } from "@/ui/dropdown"
 import { siteConfig } from "@/config/site"
-import { Button } from "@/ui/button"
 
 interface UserAccountNavProps extends React.HTMLAttributes<HTMLDivElement> {
   user: Pick<User, "name" | "image" | "email">
@@ -71,10 +71,10 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
             Log Out
           </DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem
-            className="flex items-center justify-center"
-          >
-            <Button size="sm" className="w-full">Upgrade to Pro</Button>
+          <DropdownMenuItem className="flex items-center justify-center">
+            <Button size="sm" className="w-full">
+              Upgrade to Pro
+            </Button>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenuPortal>

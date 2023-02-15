@@ -27,13 +27,7 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html
-      lang="en"
-      className={cn(
-        "antialiased",
-        fontSans.variable
-      )}
-    >
+    <html lang="en" className={cn("antialiased", fontSans.variable)}>
       <head />
       <body className="min-h-screen bg-white font-sans text-slate-900 dark:bg-slate-900 dark:text-slate-50">
         {children}

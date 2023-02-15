@@ -1,9 +1,9 @@
 import Link from "next/link"
-import { siteConfig } from "@/config/site"
+import type { NavItem } from "types"
 import { Icons } from "@/components/icons"
 import { MainNav } from "@/components/main-nav"
 import { buttonVariants } from "@/ui/button"
-import type { NavItem } from "types"
+import { siteConfig } from "@/config/site"
 
 interface SiteHeaderProps {
   mainNavItem: NavItem[]
@@ -13,9 +13,9 @@ interface SiteHeaderProps {
 export function SiteHeader({ children, mainNavItem }: SiteHeaderProps) {
   return (
     <nav className="sticky top-0 z-20 w-full border-b border-b-slate-200">
-      <div className="container flex h-16 items-center bg-white select-none dark:bg-slate-900">
+      <div className="container flex h-16 select-none items-center bg-white dark:bg-slate-900">
         <MainNav items={mainNavItem} />
-        <div className="flex flex-0 items-center justify-end space-x-2 sm:space-x-4">
+        <div className="flex-0 flex items-center justify-end space-x-2 sm:space-x-4">
           <div className="flex items-center space-x-1">
             <Link
               href={siteConfig.links.github}
