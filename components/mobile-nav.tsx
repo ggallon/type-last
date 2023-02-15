@@ -25,7 +25,7 @@ export function MobileNav({ items, children }: MobileNavProps) {
           <Icons.logo />
           <span className="font-bold">{siteConfig.name}</span>
         </Link>
-        <nav className="grid grid-flow-row auto-rows-max text-sm">
+        <div className="grid grid-flow-row auto-rows-max text-sm">
           {items.map((item, index) => (
             <Link
               key={index}
@@ -38,7 +38,7 @@ export function MobileNav({ items, children }: MobileNavProps) {
               {item.title}
             </Link>
           ))}
-        </nav>
+        </div>
         {children}
       </div>
     </div>
