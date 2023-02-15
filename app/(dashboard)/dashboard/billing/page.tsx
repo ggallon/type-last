@@ -10,7 +10,7 @@ import { stripe } from "@/lib/stripe"
 import { getUserSubscriptionPlan } from "@/lib/subscription"
 
 export const metadata = {
-  title: "User Billing",
+  title: "Billing - Account",
 }
 
 export default async function BillingPage() {
