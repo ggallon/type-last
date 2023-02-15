@@ -15,7 +15,7 @@ const fontSans = FontSans({
 export const metadata = {
   title: {
     default: siteConfig.name,
-    template: `%s | ${siteConfig.name}`,
+    template: `%s - ${siteConfig.name}`,
   },
   description:
     "An open source application built using the new router, server components and everything new in Next.js 13.",
@@ -30,12 +30,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html
       lang="en"
       className={cn(
-        "bg-white font-sans text-slate-900 antialiased",
+        "antialiased",
         fontSans.variable
       )}
     >
       <head />
-      <body className="min-h-screen">
+      <body className="min-h-screen bg-white font-sans text-slate-900 dark:bg-slate-900 dark:text-slate-50">
         {children}
         <Analytics />
         {process.env.NODE_ENV === "production" && <Help />}
