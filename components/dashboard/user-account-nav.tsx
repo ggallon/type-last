@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { User } from "next-auth"
 import { signOut } from "next-auth/react"
 import { UserAvatar } from "@/components/dashboard/user-avatar"
@@ -20,6 +21,8 @@ interface UserAccountNavProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export function UserAccountNav({ user }: UserAccountNavProps) {
+  const path = usePathname()
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="flex items-center gap-2 overflow-hidden focus:ring-2 focus:ring-brand-900 focus:ring-offset-2 focus-visible:outline-none">
@@ -27,19 +30,19 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
       </DropdownMenuTrigger>
       <DropdownMenuPortal>
         <DropdownMenuContent className="mt-2 md:w-[240px]" align="end">
-          <DropdownMenuItem>
+          <DropdownMenuItem active={path === "/dashboard"}>
             <Link href="/dashboard" className="w-full">
               Dashboard
             </Link>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>
-            <Link href="/dashboard/billing" className="w-full">
+          <DropdownMenuItem active={path === "/account/billing"}>
+            <Link href="/account/billing" className="w-full">
               Billing
             </Link>
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Link href="/dashboard/settings" className="w-full">
+          <DropdownMenuItem active={path === "/account"}>
+            <Link href="/account" className="w-full">
               Settings
             </Link>
           </DropdownMenuItem>
