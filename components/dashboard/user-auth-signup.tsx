@@ -46,7 +46,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       .then(async () => {
         await signIn<"credentials">("credentials", {
           ...data,
-          callbackUrl: searchParams.get("from") || "/dashboard",
+          callbackUrl: searchParams?.get("from") || "/dashboard",
         })
       })
       .catch((err) => {
@@ -75,7 +75,6 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
               autoCapitalize="none"
               autoComplete="email"
               autoCorrect="off"
-              name="email"
               disabled={isSubmitting}
               {...register("email")}
             />
@@ -97,7 +96,6 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
               autoCapitalize="none"
               autoComplete="password"
               autoCorrect="off"
-              name="password"
               disabled={isSubmitting}
               {...register("password")}
             />

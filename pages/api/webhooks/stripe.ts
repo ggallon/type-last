@@ -4,6 +4,8 @@ import Stripe from "stripe"
 import prisma from "@/lib/db"
 import { stripe } from "@/lib/stripe"
 
+const STRIPE_WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET ?? "undefined"
+
 export const config = {
   api: {
     // Turn off the body parser so we can access raw body for verification.
@@ -23,16 +25,19 @@ export default async function handler(
   try {
     event = stripe.webhooks.constructEvent(
       body,
-      signature,
-      process.env.STRIPE_WEBHOOK_SECRET
+      signature as string | Buffer | string[],
+      STRIPE_WEBHOOK_SECRET
     )
-  } catch (error) {
+  } catch (error: any) {
     return res.status(400).send(`Webhook Error: ${error.message}`)
   }
 
   const session = event.data.object as Stripe.Checkout.Session
 
-  if (event.type === "checkout.session.completed") {
+  if (
+    event.type === "checkout.session.completed" &&
+    session?.metadata?.userId != null
+  ) {
     // Retrieve the subscription details from Stripe.
     const subscription = await stripe.subscriptions.retrieve(
       session.subscription as string

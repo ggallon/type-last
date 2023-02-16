@@ -23,12 +23,12 @@ export async function generateStaticParams(): Promise<
   }))
 }
 
-export async function generateMetadata({ params }) {
+export function generateMetadata({ params }) {
   const slug = params?.slug?.join("/") || ""
   const mdxDoc = allGuides.find((doc) => doc.slugAsParams === slug)
 
   if (!mdxDoc) {
-    return null
+    return { title: "Guide" }
   }
 
   const { title, description } = mdxDoc

@@ -13,7 +13,9 @@ import { cn } from "@/lib/utils"
 import { userNameSchema } from "@/lib/validations/user"
 
 interface UserNameFormProps extends React.HTMLAttributes<HTMLFormElement> {
-  user: Pick<User, "id" | "name">
+  user: Pick<User, "id" | "name"> & {
+    name: string | undefined
+  }
 }
 
 type FormData = z.infer<typeof userNameSchema>

@@ -18,7 +18,7 @@ export function withPost(handler: NextApiHandler) {
       const count = await prisma.post.count({
         where: {
           id: query.postId,
-          authorId: session.user.id,
+          authorId: session?.user.id ?? undefined,
         },
       })
 

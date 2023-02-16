@@ -5,7 +5,20 @@ import GitHubProvider from "next-auth/providers/github"
 import prisma, { IdentityProvider } from "@/lib/db"
 import { verifyPassword } from "@/lib/password"
 
-export const authOptions: NextAuthOptions = {
+if (
+  process.env.GITHUB_CLIENT_ID === undefined ||
+  process.env.GITHUB_CLIENT_SECRET === undefined
+) {
+  throw new Error("Missing GITHUB environnment!")
+}
+
+interface ProacticeNextAuthOptions extends NextAuthOptions {
+  pages: {
+    signIn: string
+  }
+}
+
+export const authOptions: ProacticeNextAuthOptions = {
   debug: process.env.NODE_ENV === "development",
   adapter: PrismaAdapter(prisma),
   session: {
@@ -89,6 +102,11 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async signIn({ user, account }) {
+      if (!account) {
+        console.error(`For some reason account is missing`)
+        throw new Error("ErrorCode.InternalServerError")
+      }
+
       // In this case we've already verified the credentials
       // in the authorize callback so we can sign the user in.
       if (account.type === "credentials") {
@@ -200,6 +218,10 @@ export const authOptions: NextAuthOptions = {
       return session
     },
     async jwt({ token }) {
+      if (!token.email) {
+        return token
+      }
+
       const existingUser = await prisma.user.findUnique({
         where: {
           email: token.email,

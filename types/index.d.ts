@@ -56,7 +56,7 @@ export type DashboardConfig = {
 export type SubscriptionPlan = {
   name: string
   description: string
-  stripePriceId: string
+  stripePriceId: string | null
 }
 
 export type UserSubscriptionPlan = SubscriptionPlan &

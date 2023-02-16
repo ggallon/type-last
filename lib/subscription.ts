@@ -5,7 +5,7 @@ import prisma from "@/lib/db"
 export async function getUserSubscriptionPlan(
   userId: string
 ): Promise<UserSubscriptionPlan> {
-  const user = await prisma.user.findFirst({
+  const user = await prisma.user.findUniqueOrThrow({
     where: {
       id: userId,
     },
@@ -18,16 +18,20 @@ export async function getUserSubscriptionPlan(
   })
 
   // Check if user is on a pro plan.
-  const isPro =
-    user.stripePriceId &&
-    user.stripeCurrentPeriodEnd?.getTime() + 86_400_000 > Date.now()
+  let isPro: boolean = false
+  let periodEnd: number = 0
+  if (user.stripePriceId && user.stripeCurrentPeriodEnd) {
+    isPro = user.stripeCurrentPeriodEnd.getTime() + 86_400_000 > Date.now()
+    periodEnd = user.stripeCurrentPeriodEnd.getTime()
+  }
 
   const plan = isPro ? proPlan : freePlan
 
   return {
     ...plan,
     ...user,
-    stripeCurrentPeriodEnd: user.stripeCurrentPeriodEnd?.getTime(),
+    stripeCurrentPeriodEnd:
+      periodEnd > 0 ? periodEnd : user.stripeCurrentPeriodEnd?.getTime(),
     isPro,
   }
 }

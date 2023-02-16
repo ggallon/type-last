@@ -4,8 +4,8 @@ import { visit } from "unist-util-visit"
 
 const textTypes = ["text", "emphasis", "strong", "inlineCode"]
 
-function flattenNode(node) {
-  const p = []
+function flattenNode(node: any) {
+  const p: Array<string> = []
   visit(node, (node) => {
     if (!textTypes.includes(node.type)) return
     p.push(node.value)
@@ -23,7 +23,7 @@ interface Items {
   items?: Item[]
 }
 
-function getItems(node, current): Items {
+function getItems(node: any, current: any): Items {
   if (!node) {
     return {}
   }
@@ -44,7 +44,7 @@ function getItems(node, current): Items {
   }
 
   if (node.type === "list") {
-    current.items = node.children.map((i) => getItems(i, {}))
+    current.items = node.children.map((i: any) => getItems(i, {}))
 
     return current
   } else if (node.type === "listItem") {
@@ -60,7 +60,7 @@ function getItems(node, current): Items {
   return {}
 }
 
-const getToc = () => (node, file) => {
+const getToc = () => (node: any, file: any) => {
   const table = toc(node)
   file.data = getItems(table.map, {})
 }

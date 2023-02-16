@@ -25,7 +25,7 @@ export function UserAuthSignin({ className, ...props }: UserAuthSigninProps) {
     resolver: zodResolver(userAuthSchema),
   })
   const searchParams = useSearchParams()
-  const callbackUrl = searchParams.get("from") || "/dashboard"
+  const callbackUrl = searchParams?.get("from") || "/dashboard"
 
   async function onSubmit(data: FormData) {
     const signInResult = await signIn("credentials", {
@@ -70,7 +70,6 @@ export function UserAuthSignin({ className, ...props }: UserAuthSigninProps) {
               autoCapitalize="none"
               autoComplete="email"
               autoCorrect="off"
-              name="email"
               disabled={isSubmitting}
               {...register("email")}
             />
@@ -92,7 +91,6 @@ export function UserAuthSignin({ className, ...props }: UserAuthSigninProps) {
               autoCapitalize="none"
               autoComplete="password"
               autoCorrect="off"
-              name="password"
               disabled={isSubmitting}
               {...register("password")}
             />
