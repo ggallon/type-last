@@ -40,5 +40,10 @@ export const dashboardConfig: DashboardConfig = {
       href: "/account",
       icon: "settings",
     },
+    {
+      title: "Teams",
+      href: "/account/teams",
+      icon: "teams",
+    },
   ],
 }

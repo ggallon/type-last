@@ -19,6 +19,7 @@ import {
   Trash,
   Twitter,
   User,
+  Users,
   X,
 } from "lucide-react"
 import type { Icon as LucideIcon } from "lucide-react"
@@ -47,4 +48,5 @@ export const Icons = {
   gitHub: Github,
   twitter: Twitter,
   check: Check,
+  teams: Users,
 }
