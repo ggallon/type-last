@@ -8,7 +8,7 @@ import { stripe } from "@/lib/stripe"
 import { getUserSubscriptionPlan } from "@/lib/subscription"
 import { absoluteUrl } from "@/lib/utils"
 
-const billingUrl = absoluteUrl("/dashboard/billing")
+const billingUrl = absoluteUrl("/account/billing")
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "GET") {
@@ -31,25 +31,30 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       // The user is on the free plan.
       // Create a checkout session to upgrade.
       const stripeSession = await stripe.checkout.sessions.create({
-        success_url: billingUrl,
-        cancel_url: billingUrl,
-        payment_method_types: ["card"],
-        mode: "subscription",
-        billing_address_collection: "auto",
-        customer_email: user.email,
         line_items: [
           {
             price: proPlan.stripePriceId,
             quantity: 1,
           },
         ],
+        mode: "subscription",
+        success_url: billingUrl,
+        cancel_url: billingUrl,
+        customer_email: user.email,
         metadata: {
           userId: user.id,
         },
+        allow_promotion_codes: true,
+        automatic_tax: {
+          enabled: true,
+        },
+        billing_address_collection: "auto",
+        payment_method_types: ["card"],
       })
 
       return res.json({ url: stripeSession.url })
     } catch (error) {
+      console.error("error", error.message)
       return res.status(500).end()
     }
   }
