@@ -28,6 +28,7 @@ export function BillingForm({
     const response = await fetch("/api/users/stripe")
 
     if (!response?.ok) {
+      setIsLoading(false)
       return toast({
         title: "Something went wrong.",
         message: "Please refresh the page and try again.",
