@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next"
 import { Readable } from "node:stream"
 import type Stripe from "stripe"
+import { withMethods } from "@/lib/api-middlewares/with-methods"
 import prisma from "@/lib/db"
 import { stripe } from "@/lib/stripe"
 
@@ -27,15 +28,7 @@ const relevantEvents = new Set([
   "customer.subscription.deleted",
 ])
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  if (req.method !== "POST") {
-    res.setHeader("Allow", ["POST"])
-    return res.status(405).json({ error: `Method ${req.method} Not Allowed` })
-  }
-
+async function handler(req: NextApiRequest, res: NextApiResponse) {
   const buf = await buffer(req)
   const signature = req.headers["stripe-signature"]
 
@@ -104,3 +97,5 @@ export default async function handler(
 
   return res.json({ received: true })
 }
+
+export default withMethods(["POST"], handler)
