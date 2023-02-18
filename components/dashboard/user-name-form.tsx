@@ -1,20 +1,21 @@
 "use client"
 
 import * as React from "react"
-import { User } from "@prisma/client"
+import { useRouter } from "next/navigation"
+import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useRouter } from "next/navigation"
-
-import { cn } from "@/lib/utils"
-import { userNameSchema } from "@/lib/validations/user"
+import { Icons } from "@/components/icons"
 import { Card } from "@/ui/card"
 import { toast } from "@/ui/toast"
-import { Icons } from "@/components/icons"
+import { type User } from "@/lib/db"
+import { cn } from "@/lib/utils"
+import { userNameSchema } from "@/lib/validations/user"
 
 interface UserNameFormProps extends React.HTMLAttributes<HTMLFormElement> {
-  user: Pick<User, "id" | "name">
+  user: Pick<User, "id" | "name"> & {
+    name: string | undefined
+  }
 }
 
 type FormData = z.infer<typeof userNameSchema>

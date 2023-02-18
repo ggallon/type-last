@@ -1,12 +1,11 @@
 import { notFound } from "next/navigation"
 import { allDocs } from "contentlayer/generated"
-
-import { getTableOfContents } from "@/lib/toc"
-import { absoluteUrl } from "@/lib/utils"
 import { Mdx } from "@/components/docs/mdx"
-import { DashboardTableOfContents } from "@/components/docs/toc"
 import { DocsPageHeader } from "@/components/docs/page-header"
 import { DocsPager } from "@/components/docs/pager"
+import { DashboardTableOfContents } from "@/components/docs/toc"
+import { getTableOfContents } from "@/lib/toc"
+import { absoluteUrl } from "@/lib/utils"
 import "@/styles/mdx.css"
 
 interface DocPageProps {
@@ -23,19 +22,19 @@ export async function generateStaticParams(): Promise<
   }))
 }
 
-export async function generateMetadata({ params }) {
+export function generateMetadata({ params }) {
   const slug = params?.slug?.join("/") || ""
   const mdxDoc = allDocs.find((doc) => doc.slugAsParams === slug)
 
   if (!mdxDoc) {
-    return null
+    return { title: "Doc" }
   }
 
   const { title, description } = mdxDoc
 
   const url = process.env.NEXT_PUBLIC_APP_URL
   let ogUrl = new URL(`${url}/api/og`)
-  ogUrl.searchParams.set("heading", description)
+  ogUrl.searchParams.set("heading", description ?? "")
   ogUrl.searchParams.set("type", "Documentation")
   ogUrl.searchParams.set("mode", "light")
 

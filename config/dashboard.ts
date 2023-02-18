@@ -32,13 +32,18 @@ export const dashboardConfig: DashboardConfig = {
     },
     {
       title: "Billing",
-      href: "/dashboard/billing",
+      href: "/account/billing",
       icon: "billing",
     },
     {
       title: "Settings",
-      href: "/dashboard/settings",
+      href: "/account",
       icon: "settings",
+    },
+    {
+      title: "Teams",
+      href: "/account/teams",
+      icon: "teams",
     },
   ],
 }

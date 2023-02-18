@@ -1,8 +1,7 @@
-import * as z from "zod"
 import { allDocuments } from "contentlayer/generated"
-
-import { ogImageSchema } from "@/lib/validations/og"
+import * as z from "zod"
 import { absoluteUrl } from "@/lib/utils"
+import { ogImageSchema } from "@/lib/validations/og"
 
 interface MdxHeadProps {
   params: {
@@ -19,7 +18,7 @@ export default function MdxHead({ params, og }: MdxHeadProps) {
     return null
   }
 
-  const title = `${mdxDoc.title} - Taxonomy`
+  const title = `${mdxDoc.title} - Proactice`
   const url = process.env.NEXT_PUBLIC_APP_URL
   let ogUrl = new URL(`${url}/og.jpg`)
 

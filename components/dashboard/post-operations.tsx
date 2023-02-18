@@ -3,12 +3,18 @@
 import * as React from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { Post } from "@prisma/client"
-
-import { DropdownMenu } from "@/ui/dropdown"
 import { Icons } from "@/components/icons"
 import { Alert } from "@/ui/alert"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuPortal,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/ui/dropdown"
 import { toast } from "@/ui/toast"
+import { type Post } from "@/lib/db"
 
 async function deletePost(postId: string) {
   const response = await fetch(`/api/posts/${postId}`, {
@@ -38,26 +44,26 @@ export function PostOperations({ post }: PostOperationsProps) {
   return (
     <>
       <DropdownMenu>
-        <DropdownMenu.Trigger className="flex h-8 w-8 items-center justify-center rounded-md border transition-colors hover:bg-slate-50">
+        <DropdownMenuTrigger className="flex h-8 w-8 items-center justify-center rounded-md border transition-colors hover:bg-slate-50">
           <Icons.ellipsis className="h-4 w-4" />
           <span className="sr-only">Open</span>
-        </DropdownMenu.Trigger>
-        <DropdownMenu.Portal>
-          <DropdownMenu.Content>
-            <DropdownMenu.Item>
-              <Link href={`/editor/${post.id}`} className="flex w-full">
+        </DropdownMenuTrigger>
+        <DropdownMenuPortal>
+          <DropdownMenuContent loop align="end">
+            <DropdownMenuItem>
+              <Link href={`/editor/${post.id}`} className="w-full">
                 Edit
               </Link>
-            </DropdownMenu.Item>
-            <DropdownMenu.Separator />
-            <DropdownMenu.Item
-              className="flex cursor-pointer items-center text-red-600 focus:bg-red-50"
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem
+              className="cursor-pointer text-red-600 focus:bg-red-50"
               onSelect={() => setShowDeleteAlert(true)}
             >
               Delete
-            </DropdownMenu.Item>
-          </DropdownMenu.Content>
-        </DropdownMenu.Portal>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenuPortal>
       </DropdownMenu>
       <Alert open={showDeleteAlert} onOpenChange={setShowDeleteAlert}>
         <Alert.Content>

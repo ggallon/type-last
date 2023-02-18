@@ -1,13 +1,12 @@
-import Link from "next/link"
 import Image from "next/image"
-
-import hero from "../../public/images/hero.png"
+import Link from "next/link"
 import { siteConfig } from "@/config/site"
+import hero from "../../public/images/hero.png"
 
 async function getGitHubStars(): Promise<string | null> {
   try {
     const response = await fetch(
-      "https://api.github.com/repos/shadcn/taxonomy",
+      "https://api.github.com/repos/ggallon/type-last",
       {
         headers: {
           Accept: "application/vnd.github+json",
@@ -49,7 +48,7 @@ export default async function IndexPage() {
         </div>
         <div className="flex gap-4">
           <Link
-            href="/login"
+            href="/signup"
             className="relative inline-flex h-11 items-center rounded-md border border-transparent bg-brand-500 px-8 py-2 font-medium text-white hover:bg-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
           >
             Get Started
@@ -165,8 +164,8 @@ export default async function IndexPage() {
         </div>
         <div className="mx-auto flex flex-col gap-4 md:max-w-[52rem]">
           <p className="max-w-[85%] leading-normal text-slate-700 sm:text-lg sm:leading-7">
-            Taxonomy also includes a blog and a full-featured documentation site
-            built using Contentlayer and MDX.
+            {siteConfig.name} also includes a blog and a full-featured
+            documentation site built using Contentlayer and MDX.
           </p>
         </div>
       </section>
@@ -177,8 +176,8 @@ export default async function IndexPage() {
             Proudly Open Source
           </h2>
           <p className="max-w-[85%] leading-normal text-slate-700 sm:text-lg sm:leading-7">
-            Taxonomy is open source and powered by open source software. The
-            code is available on{" "}
+            {siteConfig.name} is open source and powered by open source
+            software. The code is available on{" "}
             <Link
               href={siteConfig.links.github}
               target="_blank"

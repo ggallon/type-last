@@ -1,12 +1,11 @@
+import Image from "next/image"
+import Link from "next/link"
 import { notFound } from "next/navigation"
 import { allAuthors, allPosts } from "contentlayer/generated"
-
 import { Mdx } from "@/components/docs/mdx"
-import "@/styles/mdx.css"
-import { formatDate } from "@/lib/utils"
-import Link from "next/link"
 import { Icons } from "@/components/icons"
-import Image from "next/image"
+import { formatDate } from "@/lib/utils"
+import "@/styles/mdx.css"
 
 interface PostPageProps {
   params: {
@@ -56,21 +55,21 @@ export default async function PostPage({ params }: PostPageProps) {
           <div className="mt-4 flex space-x-4">
             {authors.map((author) => (
               <Link
-                key={author._id}
-                href={`https://twitter.com/${author.twitter}`}
+                key={author?._id}
+                href={`https://twitter.com/${author?.twitter}`}
                 className="flex items-center space-x-2 text-sm"
               >
                 <Image
-                  src={author.avatar}
-                  alt={author.title}
+                  src={author?.avatar ?? ""}
+                  alt={author?.title ?? ""}
                   width={42}
                   height={42}
                   className="rounded-full"
                 />
                 <div className="flex-1 text-left leading-tight">
-                  <p className="font-medium text-slate-900">{author.title}</p>
+                  <p className="font-medium text-slate-900">{author?.title}</p>
                   <p className="text-[12px] text-slate-600">
-                    @{author.twitter}
+                    @{author?.twitter}
                   </p>
                 </div>
               </Link>

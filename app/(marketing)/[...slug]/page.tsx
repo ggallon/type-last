@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation"
 import { allPages } from "contentlayer/generated"
-
 import { Mdx } from "@/components/docs/mdx"
 import "@/styles/mdx.css"
 

@@ -1,7 +1,6 @@
 import Link from "next/link"
-
-import { Icons } from "@/components/icons"
 import { UserAuthForm } from "@/components/dashboard/user-auth-signup"
+import { Icons } from "@/components/icons"
 
 export const metadata = {
   title: "Sign Up",

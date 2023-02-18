@@ -1,18 +1,17 @@
 "use client"
 
 import * as React from "react"
-import EditorJS from "@editorjs/editorjs"
-import { Post } from "@prisma/client"
-import { useForm } from "react-hook-form"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
+import EditorJS from "@editorjs/editorjs"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
 import TextareaAutosize from "react-textarea-autosize"
 import * as z from "zod"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useRouter } from "next/navigation"
-
-import { postPatchSchema } from "@/lib/validations/post"
-import { toast } from "@/ui/toast"
 import { Icons } from "@/components/icons"
+import { toast } from "@/ui/toast"
+import type { Post } from "@/lib/db"
+import { postPatchSchema } from "@/lib/validations/post"
 
 interface EditorProps {
   post: Pick<Post, "id" | "title" | "content" | "published">

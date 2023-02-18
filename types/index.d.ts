@@ -1,6 +1,6 @@
-import { Icons } from "@/components/icons"
-import { User } from "@prisma/client"
 import type { Icon } from "lucide-react"
+import { Icons } from "@/components/icons"
+import { type User } from "@/lib/db"
 
 export type NavItem = {
   title: string
@@ -28,6 +28,11 @@ export type SidebarNavItem = {
 
 export type SiteConfig = {
   name: string
+  domain: string
+  creator: {
+    name: string
+    twitter: string
+  }
   links: {
     twitter: string
     github: string
@@ -51,7 +56,7 @@ export type DashboardConfig = {
 export type SubscriptionPlan = {
   name: string
   description: string
-  stripePriceId: string
+  stripePriceId: string | null
 }
 
 export type UserSubscriptionPlan = SubscriptionPlan &

@@ -40,7 +40,8 @@ model Session {
   sessionToken String   @unique
   userId       String
   expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
 }
@@ -52,10 +53,11 @@ enum IdentityProvider {
 
 model User {
   id                 String           @id @default(cuid())
-  name               String?
+  name               String?          @db.VarChar(34)
+  username           String?          @unique @db.VarChar(48)
   email              String?          @unique
   emailVerified      DateTime?
-  image              String?
+  image              String?          @db.VarChar(300)
   password           String?
   identityProvider   IdentityProvider @default(PROACTICE)
   identityProviderId String?
@@ -65,6 +67,7 @@ model User {
   accounts Account[]
   sessions Session[]
   Post     Post[]
+  teams    Membership[]
 
   stripeCustomerId       String?   @unique
   stripeSubscriptionId   String?   @unique
@@ -85,11 +88,60 @@ model Post {
   title     String
   content   Json?
   published Boolean  @default(false)
+  authorId  String
+  projectId String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  authorId  String
 
-  author User @relation(fields: [authorId], references: [id])
+  author  User     @relation(fields: [authorId], references: [id])
+  Project Project? @relation(fields: [projectId], references: [id])
 
   @@index([authorId])
+  @@index([projectId])
+}
+
+model Project {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique @db.VarChar(100)
+  teamId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  posts Post[]
+  team  Team   @relation(fields: [teamId], references: [id])
+
+  @@index([teamId])
+}
+
+model Team {
+  id        String   @id @default(cuid())
+  name      String   @db.VarChar(34)
+  slug      String   @unique @db.VarChar(48)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  members  Membership[]
+  projects Project[]
+}
+
+enum MembershipRole {
+  MEMBER
+  ADMIN
+  OWNER
+}
+
+model Membership {
+  teamId    String
+  userId    String
+  accepted  Boolean        @default(false)
+  role      MembershipRole @default(MEMBER)
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+
+  team Team @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([teamId, userId])
+  @@index([userId])
 }

@@ -1,11 +1,10 @@
 "use client"
 
 import Image from "next/image"
-
-import { Popover } from "@/ui/popover"
-import { Icons } from "@/components/icons"
-import { siteConfig } from "@/config/site"
 import OgImage from "public/og.jpg"
+import { Icons } from "@/components/icons"
+import { Popover } from "@/ui/popover"
+import { siteConfig } from "@/config/site"
 
 export function Help() {
   return (
@@ -32,7 +31,7 @@ export function Help() {
               rel="noreferrer"
               className="border-b border-b-white"
             >
-              @shadcn
+              {siteConfig.creator.twitter}
             </a>{" "}
             or on{" "}
             <a

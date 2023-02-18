@@ -5,6 +5,8 @@ export default function Head({ params }) {
     <MdxHead
       params={params}
       og={{
+        heading: "Blog",
+        mode: "light",
         type: "Blog Post",
       }}
     />

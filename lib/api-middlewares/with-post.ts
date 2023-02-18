@@ -1,7 +1,6 @@
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from "next"
 import { getServerSession } from "next-auth/next"
 import * as z from "zod"
-
 import { authOptions } from "@/lib/auth"
 import prisma from "@/lib/db"
 
@@ -19,7 +18,7 @@ export function withPost(handler: NextApiHandler) {
       const count = await prisma.post.count({
         where: {
           id: query.postId,
-          authorId: session.user.id,
+          authorId: session?.user.id ?? undefined,
         },
       })
 

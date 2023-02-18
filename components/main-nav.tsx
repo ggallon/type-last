@@ -3,12 +3,11 @@
 import * as React from "react"
 import Link from "next/link"
 import { useSelectedLayoutSegment } from "next/navigation"
-
 import { MainNavItem } from "types"
-import { cn } from "@/lib/utils"
-import { siteConfig } from "@/config/site"
 import { Icons } from "@/components/icons"
 import { MobileNav } from "@/components/mobile-nav"
+import { siteConfig } from "@/config/site"
+import { cn } from "@/lib/utils"
 
 interface MainNavProps {
   items?: MainNavItem[]
@@ -20,7 +19,7 @@ export function MainNav({ items, children }: MainNavProps) {
   const [showMobileMenu, setShowMobileMenu] = React.useState<boolean>(false)
 
   return (
-    <div className="flex gap-6 md:gap-10">
+    <div className="flex flex-1 gap-6 md:gap-10">
       <Link href="/" className="hidden items-center space-x-2 md:flex">
         <Icons.logo />
         <span className="hidden font-bold sm:inline-block">
@@ -28,7 +27,7 @@ export function MainNav({ items, children }: MainNavProps) {
         </span>
       </Link>
       {items?.length ? (
-        <nav className="hidden gap-6 md:flex">
+        <div className="hidden gap-6 md:flex">
           {items?.map((item, index) => (
             <Link
               key={index}
@@ -42,7 +41,7 @@ export function MainNav({ items, children }: MainNavProps) {
               {item.title}
             </Link>
           ))}
-        </nav>
+        </div>
       ) : null}
       <button
         className="flex items-center space-x-2 md:hidden"

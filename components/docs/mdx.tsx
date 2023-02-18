@@ -1,10 +1,9 @@
 import * as React from "react"
 import Image from "next/image"
 import { useMDXComponent } from "next-contentlayer/hooks"
-
-import { cn } from "@/lib/utils"
 import { Callout } from "@/components/docs/callout"
 import { Card } from "@/components/docs/card"
+import { cn } from "@/lib/utils"
 
 const components = {
   h1: ({ className, ...props }) => (
