@@ -5,6 +5,7 @@ module.exports = {
   tabWidth: 2,
   trailingComma: "es5",
   importOrder: [
+    "^(node:$)",
     "^(react/(.*)$)|^(react$)",
     "^(next/(.*)$)|^(next$)",
     "<THIRD_PARTY_MODULES>",
