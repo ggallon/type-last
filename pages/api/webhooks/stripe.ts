@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next"
-import rawBody from "raw-body"
-import Stripe from "stripe"
+import { Readable } from "node:stream"
+import type Stripe from "stripe"
 import prisma from "@/lib/db"
 import { stripe } from "@/lib/stripe"
 
@@ -13,22 +13,43 @@ export const config = {
   },
 }
 
+async function buffer(readable: Readable) {
+  const chunks = []
+  for await (const chunk of readable) {
+    chunks.push(typeof chunk === "string" ? Buffer.from(chunk) : chunk)
+  }
+  return Buffer.concat(chunks)
+}
+
+const relevantEvents = new Set([
+  "checkout.session.completed",
+  "customer.subscription.updated",
+  "customer.subscription.deleted",
+])
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const body = await rawBody(req)
+  if (req.method !== "POST") {
+    res.setHeader("Allow", ["POST"])
+    return res.status(405).json({ error: `Method ${req.method} Not Allowed` })
+  }
+
+  const buf = await buffer(req)
   const signature = req.headers["stripe-signature"]
 
   let event: Stripe.Event
 
   try {
+    if (!signature || !STRIPE_WEBHOOK_SECRET) return
     event = stripe.webhooks.constructEvent(
-      body,
+      buf,
       signature as string | Buffer | string[],
       STRIPE_WEBHOOK_SECRET
     )
   } catch (error: any) {
+    console.log(`❌ Error message: ${error.message}`)
     return res.status(400).send(`Webhook Error: ${error.message}`)
   }
 
@@ -81,5 +102,5 @@ export default async function handler(
     })
   }
 
-  return res.json({})
+  return res.json({ received: true })
 }

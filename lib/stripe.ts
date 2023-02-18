@@ -1,8 +1,8 @@
 import Stripe from "stripe"
 
-const STRIPE_API_KEY = process.env.STRIPE_API_KEY ?? "undefined"
+const STRIPE_KEY_SECRET = process.env.STRIPE_KEY_SECRET ?? "undefined"
 
-export const stripe = new Stripe(STRIPE_API_KEY, {
+export const stripe = new Stripe(STRIPE_KEY_SECRET, {
   apiVersion: "2022-11-15",
   typescript: true,
 })
