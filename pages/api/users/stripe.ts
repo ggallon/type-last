@@ -8,7 +8,7 @@ import { stripe } from "@/lib/stripe"
 import { getUserSubscriptionPlan } from "@/lib/subscription"
 import { absoluteUrl } from "@/lib/utils"
 
-const billingUrl = absoluteUrl("/dashboard/billing")
+const billingUrl = absoluteUrl("/account/billing")
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "GET") {
@@ -50,6 +50,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
       return res.json({ url: stripeSession.url })
     } catch (error) {
+      console.error("error", error.message)
       return res.status(500).end()
     }
   }
