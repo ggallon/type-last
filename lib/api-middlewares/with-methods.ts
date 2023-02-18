@@ -1,6 +1,12 @@
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from "next"
 
-export type HTTP_METHODS = "OPTIONS" | "GET" | "POST" | "PUT" | "DELETE"
+export type HTTP_METHODS =
+  | "OPTIONS"
+  | "GET"
+  | "POST"
+  | "PATCH"
+  | "PUT"
+  | "DELETE"
 
 export function withMethods(
   allowedMethods: HTTP_METHODS[],
