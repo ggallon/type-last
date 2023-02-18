@@ -37,6 +37,7 @@ export type SiteConfig = {
     twitter: string
     github: string
   }
+  defaultFrom: string
 }
 
 export type DocsConfig = {

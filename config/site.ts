@@ -11,4 +11,5 @@ export const siteConfig: SiteConfig = {
     twitter: "https://twitter.com/gwengallon",
     github: "https://github.com/ggallon/type-last",
   },
+  defaultFrom: '"Gwenaël 👻" <gwenael@proactice.co>',
 }
