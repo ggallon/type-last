@@ -38,7 +38,6 @@ A few people have asked me to turn this into a starter. I think we could do that
 - ORM using **Prisma**
 - Database on **PlanetScale**
 - UI Components built using **Radix UI**
-- Documentation and blog using **MDX** and **Contentlayer**
 - Subscriptions using **Stripe**
 - Styled using **Tailwind CSS**
 - Validations using **Zod**
@@ -52,7 +51,6 @@ A few people have asked me to turn this into a starter. I think we could do that
 - [x] ~Responsive styles~
 - [x] ~Add OG image for blog using @vercel/og~
 - [ ] Add tests
-- [ ] Dark mode
 
 ## Known Issues
 
