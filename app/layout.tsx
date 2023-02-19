@@ -1,4 +1,4 @@
-import { Inter as FontSans } from "@next/font/google"
+import { Inter as FontSans } from "next/font/google"
 import { Analytics } from "@/components/analytics"
 import { Help } from "@/components/help"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
