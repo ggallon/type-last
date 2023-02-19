@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { TeamOperations } from "@/components/dashboard/team-operations"
 import { Skeleton } from "@/ui/skeleton"
 import type { MembershipRole, Team } from "@/lib/db"
 import { formatDate } from "@/lib/utils"
@@ -22,6 +23,7 @@ export function TeamItem({ team, role }: TeamItemProps) {
           <p className="text-sm text-slate-600">{role}</p>
         </div>
       </div>
+      <TeamOperations team={{ id: team.id, slug: team.slug }} />
     </div>
   )
 }

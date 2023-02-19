@@ -18,13 +18,14 @@ export function TeamCreateButton({
   async function onClick() {
     setIsLoading(true)
 
-    const response = await fetch("/api/account/teams", {
+    const response = await fetch("/api/teams", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: "Untitled Team",
+        name: "Test",
+        slug: "test",
       }),
     })
 
