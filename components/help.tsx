@@ -3,18 +3,21 @@
 import Image from "next/image"
 import OgImage from "public/og.jpg"
 import { Icons } from "@/components/icons"
-import { Popover } from "@/ui/popover"
+import { Popover, PopoverContent, PopoverTrigger } from "@/ui/popover"
 import { siteConfig } from "@/config/site"
 
 export function Help() {
   return (
     <Popover>
-      <Popover.Trigger className="fixed right-4 bottom-4 inline-flex h-10 w-10 items-center justify-center rounded-full border bg-brand text-white">
+      <PopoverTrigger className="fixed right-4 bottom-4 inline-flex h-10 w-10 items-center justify-center rounded-full border bg-brand text-white">
         <Icons.pizza className="h-5 w-5" />
         <span className="sr-only">Toggle</span>
-      </Popover.Trigger>
-      <Popover.Content className="bg-brand p-4 text-sm text-white">
-        <div className="grid w-[300px] gap-4">
+      </PopoverTrigger>
+      <PopoverContent
+        align="end"
+        className="text-smw-[300px] bg-brand text-white"
+      >
+        <div className="grid gap-4">
           <Image
             src={OgImage}
             alt="Screenshot"
@@ -45,7 +48,7 @@ export function Help() {
             .
           </p>
         </div>
-      </Popover.Content>
+      </PopoverContent>
     </Popover>
   )
 }
