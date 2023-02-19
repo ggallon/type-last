@@ -4,34 +4,29 @@ import * as React from "react"
 import * as PopoverPrimitive from "@radix-ui/react-popover"
 import { cn } from "@/lib/utils"
 
-type PopoverProps = PopoverPrimitive.PopoverProps
+export const Popover = PopoverPrimitive.Root
 
-export function Popover({ ...props }: PopoverProps) {
-  return <PopoverPrimitive.Root {...props} />
-}
+export const PopoverTrigger = PopoverPrimitive.Trigger
 
-Popover.Trigger = React.forwardRef<
-  HTMLButtonElement,
-  PopoverPrimitive.PopoverTriggerProps
->(function PopoverTrigger({ ...props }, ref) {
-  return <PopoverPrimitive.Trigger {...props} ref={ref} />
-})
-
-Popover.Portal = PopoverPrimitive.Portal
-
-Popover.Content = React.forwardRef<
-  HTMLDivElement,
-  PopoverPrimitive.PopoverContentProps
->(function PopoverContent({ className, ...props }, ref) {
+export const PopoverContent = React.forwardRef<
+  React.ElementRef<typeof PopoverPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>
+>(function PopoverContent(
+  { className, align = "center", sideOffset = 4, ...props },
+  ref
+) {
   return (
-    <PopoverPrimitive.Content
-      ref={ref}
-      align="end"
-      className={cn(
-        "overflow-hidden rounded-md border border-slate-50 bg-white shadow-md animate-in slide-in-from-top-1",
-        className
-      )}
-      {...props}
-    />
+    <PopoverPrimitive.Portal>
+      <PopoverPrimitive.Content
+        ref={ref}
+        align={align}
+        sideOffset={sideOffset}
+        className={cn(
+          "z-50 w-72 rounded-md border border-slate-100 bg-white p-4 shadow-md outline-none animate-in data-[side=bottom]:slide-in-from-top-2 data-[side=top]:slide-in-from-bottom-2 data-[side=right]:slide-in-from-left-2 data-[side=left]:slide-in-from-right-2 dark:border-slate-800 dark:bg-slate-800",
+          className
+        )}
+        {...props}
+      />
+    </PopoverPrimitive.Portal>
   )
 })
