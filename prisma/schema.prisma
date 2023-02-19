@@ -94,7 +94,7 @@ model Post {
   updatedAt DateTime @updatedAt
 
   author  User     @relation(fields: [authorId], references: [id])
-  Project Project? @relation(fields: [projectId], references: [id])
+  Project Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
 
   @@index([authorId])
   @@index([projectId])
@@ -109,7 +109,7 @@ model Project {
   updatedAt DateTime @updatedAt
 
   posts Post[]
-  team  Team   @relation(fields: [teamId], references: [id])
+  team  Team   @relation(fields: [teamId], references: [id], onDelete: Cascade)
 
   @@index([teamId])
 }

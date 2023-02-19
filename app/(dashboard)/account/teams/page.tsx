@@ -19,6 +19,7 @@ const getTeamsMemberShips = cache(async (userId: User["id"]) => {
       id: userId,
     },
     select: {
+      name: true,
       teams: {
         select: {
           role: true,
