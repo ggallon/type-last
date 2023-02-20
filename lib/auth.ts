@@ -213,6 +213,7 @@ export const authOptions: ProacticeNextAuthOptions = {
         session.user.name = token.name
         session.user.email = token.email
         session.user.image = token.picture
+        session.user.username = token.username
       }
 
       return session
@@ -230,6 +231,7 @@ export const authOptions: ProacticeNextAuthOptions = {
           id: true,
           name: true,
           email: true,
+          username: true,
         },
       })
 
