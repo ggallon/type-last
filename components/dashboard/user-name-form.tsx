@@ -25,18 +25,15 @@ export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
   const {
     handleSubmit,
     register,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<FormData>({
     resolver: zodResolver(userNameSchema),
     defaultValues: {
       name: user.name,
     },
   })
-  const [isSaving, setIsSaving] = React.useState<boolean>(false)
 
   async function onSubmit(data: FormData) {
-    setIsSaving(true)
-
     const response = await fetch(`/api/users/${user.id}`, {
       method: "PATCH",
       headers: {
@@ -46,8 +43,6 @@ export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
         name: data.name,
       }),
     })
-
-    setIsSaving(false)
 
     if (!response?.ok) {
       return toast({
@@ -89,6 +84,7 @@ export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
               className="my-0 mb-2 block h-9 w-[350px] rounded-md border border-slate-300 py-2 px-3 text-sm placeholder:text-slate-400 hover:border-slate-400 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:ring-offset-1"
               size={32}
               name="name"
+              disabled={isSubmitting}
               {...register("name")}
             />
             {errors?.name && (
@@ -97,22 +93,27 @@ export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
           </div>
         </Card.Content>
         <Card.Footer>
-          <button
-            type="submit"
-            className={cn(
-              "relative inline-flex h-9 items-center rounded-md border border-transparent bg-brand-500 px-4 py-2 text-sm font-medium text-white hover:bg-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2",
-              {
-                "cursor-not-allowed opacity-60": isSaving,
-              },
-              className
-            )}
-            disabled={isSaving}
-          >
-            {isSaving && (
-              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-            )}
-            <span>Save</span>
-          </button>
+          <div className="flex flex-row items-center justify-between">
+            <p className="text-sm text-gray-600">
+              Please use 38 characters at maximum.
+            </p>
+            <button
+              type="submit"
+              className={cn(
+                "relative inline-flex h-9 items-center rounded-md border border-transparent bg-brand-500 px-4 py-2 text-sm font-medium text-white hover:bg-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2",
+                {
+                  "cursor-not-allowed opacity-60": isSubmitting,
+                },
+                className
+              )}
+              disabled={isSubmitting}
+            >
+              {isSubmitting && (
+                <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+              )}
+              <span>Save</span>
+            </button>
+          </div>
         </Card.Footer>
       </Card>
     </form>
