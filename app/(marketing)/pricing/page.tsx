@@ -50,7 +50,7 @@ export default function PricingPage() {
             <p className="text-sm font-medium text-slate-600">Billed Monthly</p>
           </div>
           <Link
-            href="/login"
+            href="/signup"
             className="relative inline-flex h-12 items-center justify-center rounded-md border border-transparent bg-brand-500 py-6 text-center font-medium text-white hover:bg-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
           >
             Get Started
