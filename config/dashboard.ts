@@ -31,15 +31,17 @@ export const dashboardConfig: DashboardConfig = {
       icon: "media",
       disabled: true,
     },
+  ],
+  accountSidebarNav: [
+    {
+      title: "General",
+      href: "/account",
+      icon: "settings",
+    },
     {
       title: "Billing",
       href: "/account/billing",
       icon: "billing",
-    },
-    {
-      title: "Settings",
-      href: "/account",
-      icon: "settings",
     },
     {
       title: "Teams",
