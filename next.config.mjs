@@ -7,6 +7,11 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
+  modularizeImports: {
+    "lucide-react": {
+      transform: "lucide-react/dist/esm/icons/{{ kebabCase member }}",
+    },
+  },
 }
 
 export default nextConfig
