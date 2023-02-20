@@ -48,8 +48,6 @@ export function UserUserNameForm({
       }),
     })
 
-    console.log("response", response)
-
     if (!response?.ok) {
       return toast({
         title: "Something went wrong.",

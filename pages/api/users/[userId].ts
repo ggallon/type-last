@@ -31,7 +31,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
       if (body?.username) {
         const payload = userUserNameSchema.parse(body)
-        console.log("payload", payload)
+
         await prisma.user.update({
           where: {
             id: user.id,
