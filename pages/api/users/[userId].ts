@@ -6,6 +6,7 @@ import { withMethods } from "@/lib/api-middlewares/with-methods"
 import { authOptions } from "@/lib/auth"
 import prisma from "@/lib/db"
 import { userNameSchema } from "@/lib/validations/user"
+import { userUserNameSchema } from "@/lib/validations/user"
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "PATCH") {
@@ -24,6 +25,19 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
           },
           data: {
             name: payload.name,
+          },
+        })
+      }
+
+      if (body?.username) {
+        const payload = userUserNameSchema.parse(body)
+
+        await prisma.user.update({
+          where: {
+            id: user.id,
+          },
+          data: {
+            username: payload.username,
           },
         })
       }

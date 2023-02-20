@@ -10,26 +10,30 @@ import { Card } from "@/ui/card"
 import { toast } from "@/ui/toast"
 import { type User } from "@/lib/db"
 import { cn } from "@/lib/utils"
-import { userNameSchema } from "@/lib/validations/user"
+import { userUserNameSchema } from "@/lib/validations/user"
 
-interface UserNameFormProps extends React.HTMLAttributes<HTMLFormElement> {
-  user: Pick<User, "id" | "name"> & {
-    name: string | undefined
+interface UserUserNameFormProps extends React.HTMLAttributes<HTMLFormElement> {
+  user: Pick<User, "id" | "username"> & {
+    username: string | undefined
   }
 }
 
-type FormData = z.infer<typeof userNameSchema>
+type FormData = z.infer<typeof userUserNameSchema>
 
-export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
+export function UserUserNameForm({
+  user,
+  className,
+  ...props
+}: UserUserNameFormProps) {
   const router = useRouter()
   const {
     handleSubmit,
     register,
     formState: { errors, isSubmitting },
   } = useForm<FormData>({
-    resolver: zodResolver(userNameSchema),
+    resolver: zodResolver(userUserNameSchema),
     defaultValues: {
-      name: user.name,
+      username: user.username,
     },
   })
 
@@ -40,20 +44,20 @@ export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: data.name,
+        username: data.username,
       }),
     })
 
     if (!response?.ok) {
       return toast({
         title: "Something went wrong.",
-        message: "Your name was not updated. Please try again.",
+        message: "Your username was not updated. Please try again.",
         type: "error",
       })
     }
 
     toast({
-      message: "Your name has been updated.",
+      message: "Your username has been updated.",
       type: "success",
     })
 
@@ -68,34 +72,34 @@ export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
     >
       <Card>
         <Card.Header>
-          <Card.Title>Your Name</Card.Title>
+          <Card.Title>Your Username</Card.Title>
           <Card.Description>
-            Please enter your full name or a display name you are comfortable
-            with.
+            This is your URL namespace within Proactice.
           </Card.Description>
         </Card.Header>
         <Card.Content>
           <div className="grid gap-1">
             <label className="sr-only" htmlFor="name">
-              Name
+              Username
             </label>
             <input
-              id="name"
+              id="username"
               className="my-0 mb-2 block h-9 w-[350px] rounded-md border border-slate-300 py-2 px-3 text-sm placeholder:text-slate-400 hover:border-slate-400 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:ring-offset-1"
               size={32}
-              name="name"
-              disabled={isSubmitting}
-              {...register("name")}
+              name="username"
+              {...register("username")}
             />
-            {errors?.name && (
-              <p className="px-1 text-xs text-red-600">{errors.name.message}</p>
+            {errors?.username && (
+              <p className="px-1 text-xs text-red-600">
+                {errors.username.message}
+              </p>
             )}
           </div>
         </Card.Content>
         <Card.Footer>
           <div className="flex flex-row items-center justify-between">
             <p className="text-sm text-gray-600">
-              Please use 38 characters at maximum.
+              Please use 48 characters at maximum.
             </p>
             <button
               type="submit"
