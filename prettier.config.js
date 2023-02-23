@@ -5,7 +5,7 @@ module.exports = {
   tabWidth: 2,
   trailingComma: "es5",
   importOrder: [
-    "^(node:$)",
+    "^(node:(.*)$)",
     "^(react/(.*)$)|^(react$)",
     "^(next/(.*)$)|^(next$)",
     "<THIRD_PARTY_MODULES>",
@@ -14,6 +14,7 @@ module.exports = {
     "^@/hooks/(.*)$",
     "^@/config/(.*)$",
     "^@/lib/(.*)$",
+    "^@/public/(.*)$",
     "^@/styles/(.*)$",
     "^[./]",
   ],
