@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { siteConfig } from "@/config/site"
-import hero from "../../public/images/hero.png"
+import hero from "@/public/_static/hero.png"
 
 async function getGitHubStars(): Promise<string | null> {
   try {
