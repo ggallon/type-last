@@ -18,13 +18,14 @@
     "baseUrl": ".",
     "paths": {
       "@/components/*": ["components/*"],
-      "@/ui/*": ["ui/*"],
-      "@/hooks/*": ["hooks/*"],
-      "@/lib/*": ["lib/*"],
       "@/config/*": ["config/*"],
-      "@/styles/*": ["styles/*"],
+      "@/lib/*": ["lib/*"],
+      "@/hooks/*": ["hooks/*"],
       "@/prisma/*": ["prisma/*"],
-      "contentlayer/generated": ["./.contentlayer/generated"]
+      "@/public/*": ["public/*"],
+      "@/styles/*": ["styles/*"],
+      "@/ui/*": ["ui/*"],
+      "@/utils/*": ["utils/*"]
     },
     "plugins": [
       {
