@@ -27,6 +27,7 @@ specifiers:
   '@types/nodemailer': ^6.4.7
   '@types/react': 18.0.28
   '@types/react-dom': 18.0.11
+  '@types/tinycolor2': ^1.4.3
   '@vercel/analytics': 0.1.10
   '@vercel/og': 0.1.0
   autoprefixer: 10.4.13
@@ -57,6 +58,7 @@ specifiers:
   tailwind-merge: 1.9.1
   tailwindcss: 3.2.7
   tailwindcss-animate: 1.0.5
+  tinycolor2: 1.6.0
   typescript: 4.9.5
   zod: 3.20.6
 
@@ -97,6 +99,7 @@ dependencies:
   stripe: 11.11.0
   tailwind-merge: 1.9.1
   tailwindcss-animate: 1.0.5_tailwindcss@3.2.7
+  tinycolor2: 1.6.0
   zod: 3.20.6
 
 devDependencies:
@@ -109,6 +112,7 @@ devDependencies:
   '@types/nodemailer': 6.4.7
   '@types/react': 18.0.28
   '@types/react-dom': 18.0.11
+  '@types/tinycolor2': 1.4.3
   autoprefixer: 10.4.13_postcss@8.4.21
   eslint: 8.34.0
   eslint-config-next: 13.1.7-canary.21_7kw3g6rralp5ps6mg3uyzz6azm
@@ -1502,6 +1506,10 @@ packages:
   /@types/scheduler/0.16.2:
     resolution: {integrity: sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==}
 
+  /@types/tinycolor2/1.4.3:
+    resolution: {integrity: sha512-Kf1w9NE5HEgGxCRyIcRXR/ZYtDv0V8FVPtYHwLxl0O+maGX0erE77pQlD0gpP+/KByMZ87mOA79SjifhSB3PjQ==}
+    dev: true
+
   /@typescript-eslint/parser/5.44.0_7kw3g6rralp5ps6mg3uyzz6azm:
     resolution: {integrity: sha512-H7LCqbZnKqkkgQHaKLGC6KUjt3pjJDx8ETDqmwncyb6PuoigYajyAwBGz08VU/l86dZWZgI4zm5k2VaKqayYyA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -2108,8 +2116,8 @@ packages:
     engines: {node: '>=4'}
     dev: false
 
-  /css-to-react-native/3.0.0:
-    resolution: {integrity: sha512-Ro1yETZA813eoyUp2GDBhG2j+YggidUmzO1/v9eYBKR2EHVEniE2MI/NqpTQ954BMpTPZFsGNPm46qFB9dpaPQ==}
+  /css-to-react-native/3.2.0:
+    resolution: {integrity: sha512-e8RKaLXMOFii+02mOlqwjbD00KSEKqblnpO9e++1aXS1fPQOpS1YoqdVHBqPjHNoxeF2mimzVqawm2KCbEdtHQ==}
     dependencies:
       camelize: 1.0.1
       css-color-keywords: 1.0.0
@@ -4419,7 +4427,7 @@ packages:
       '@shuding/opentype.js': 1.4.0-beta.0
       css-background-parser: 0.1.0
       css-box-shadow: 1.0.0-3
-      css-to-react-native: 3.0.0
+      css-to-react-native: 3.2.0
       emoji-regex: 10.2.1
       postcss-value-parser: 4.2.0
       yoga-wasm-web: 0.3.0
@@ -4780,6 +4788,10 @@ packages:
       globalyzer: 0.1.0
       globrex: 0.1.2
     dev: true
+
+  /tinycolor2/1.6.0:
+    resolution: {integrity: sha512-XPaBkWQJdsf3pLKJV9p4qN/S+fm2Oj8AIPo1BTUhg5oxkvm9+SVEGFdhyOz7tTdUTfvxMiAs4sp6/eZO2Ew+pw==}
+    dev: false
 
   /to-fast-properties/2.0.0:
     resolution: {integrity: sha512-/OaKK0xYrs3DmxRYqL/yDc+FxFUVYhDlXMhRmv3z915w2HF1tnN1omB354j8VUGO/hbRzyD6Y3sA7v7GS/ceog==}

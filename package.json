@@ -52,6 +52,7 @@
     "stripe": "11.11.0",
     "tailwind-merge": "1.9.1",
     "tailwindcss-animate": "1.0.5",
+    "tinycolor2": "1.6.0",
     "zod": "3.20.6"
   },
   "devDependencies": {
@@ -64,6 +65,7 @@
     "@types/nodemailer": "^6.4.7",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
+    "@types/tinycolor2": "^1.4.3",
     "autoprefixer": "10.4.13",
     "eslint": "8.34.0",
     "eslint-config-next": "13.1.7-canary.21",
