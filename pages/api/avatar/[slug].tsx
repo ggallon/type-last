@@ -19,7 +19,7 @@ async function handler(req: NextRequest) {
   const slug = searchParams.get("slug")
   const textOrign = searchParams.get("text")
   const text = textOrign ? decodeURIComponent(textOrign) : ""
-  const size = Number(searchParams.get("size") || "120")
+  const size = Number(searchParams.get("size")) || "120"
   const [name, type] = slug?.split(".") || []
   const fileType = type ?? "png"
 
