@@ -4,12 +4,20 @@ import * as React from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Icons } from "@/components/icons"
-import { Alert } from "@/ui/alert"
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/ui/alert"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuPortal,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/ui/dropdown"
@@ -48,34 +56,34 @@ export function PostOperations({ post }: PostOperationsProps) {
           <Icons.ellipsis className="h-4 w-4" />
           <span className="sr-only">Open</span>
         </DropdownMenuTrigger>
-        <DropdownMenuPortal>
-          <DropdownMenuContent loop align="end">
-            <DropdownMenuItem>
-              <Link href={`/editor/${post.id}`} className="w-full">
-                Edit
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem
-              className="cursor-pointer text-red-600 focus:bg-red-50"
-              onSelect={() => setShowDeleteAlert(true)}
-            >
-              Delete
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenuPortal>
+        <DropdownMenuContent align="end">
+          <DropdownMenuItem>
+            <Link href={`/editor/${post.id}`} className="flex w-full">
+              Edit
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem
+            className="flex cursor-pointer items-center text-red-600 focus:bg-red-50"
+            onSelect={() => setShowDeleteAlert(true)}
+          >
+            Delete
+          </DropdownMenuItem>
+        </DropdownMenuContent>
       </DropdownMenu>
-      <Alert open={showDeleteAlert} onOpenChange={setShowDeleteAlert}>
-        <Alert.Content>
-          <Alert.Header>
-            <Alert.Title>
+      <AlertDialog open={showDeleteAlert} onOpenChange={setShowDeleteAlert}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>
               Are you sure you want to delete this post?
-            </Alert.Title>
-            <Alert.Description>This action cannot be undone.</Alert.Description>
-          </Alert.Header>
-          <Alert.Footer>
-            <Alert.Cancel>Cancel</Alert.Cancel>
-            <Alert.Action
+            </AlertDialogTitle>
+            <AlertDialogDescription>
+              This action cannot be undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction
               onClick={async (event) => {
                 event.preventDefault()
                 setIsDeleteLoading(true)
@@ -96,10 +104,10 @@ export function PostOperations({ post }: PostOperationsProps) {
                 <Icons.trash className="mr-2 h-4 w-4" />
               )}
               <span>Delete</span>
-            </Alert.Action>
-          </Alert.Footer>
-        </Alert.Content>
-      </Alert>
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </>
   )
 }

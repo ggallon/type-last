@@ -14,6 +14,10 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       const session = await getServerSession(req, res, authOptions)
       const user = session?.user
 
+      if (!user) {
+        throw new Error("User not found.")
+      }
+
       const body = req.body
 
       if (body?.name) {

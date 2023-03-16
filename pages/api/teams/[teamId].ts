@@ -27,7 +27,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       })
       console.log("delete", teamDelete)
       return res.status(204).end()
-    } catch (error) {
+    } catch (error: any) {
       console.log("ERROR delete", error.message)
       return res.status(500).end()
     }

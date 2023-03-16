@@ -1,6 +1,6 @@
 import { Readable } from "node:stream"
 import { NextApiRequest, NextApiResponse } from "next"
-import type Stripe from "stripe"
+import Stripe from "stripe"
 import { withMethods } from "@/lib/api-middlewares/with-methods"
 import prisma from "@/lib/db"
 import { stripe } from "@/lib/stripe"
@@ -42,8 +42,11 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       STRIPE_WEBHOOK_SECRET
     )
   } catch (error: any) {
-    console.log(`❌ Error message: ${error.message}`)
-    return res.status(400).send(`Webhook Error: ${error.message}`)
+    if (error instanceof Stripe.errors.StripeError) {
+      return res.status(400).send(`Webhook Error: ${error.message}`)
+    }
+
+    return res.status(400).send(`Error: ${error.message}`)
   }
 
   const session = event.data.object as Stripe.Checkout.Session

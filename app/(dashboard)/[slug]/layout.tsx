@@ -1,4 +1,4 @@
-import { DashboardNav } from "@/components/dashboard/nav"
+import { DashboardNav } from "@/components/nav"
 import { dashboardConfig } from "@/config/dashboard"
 
 interface UserOrTeamDashboardLayoutProps {

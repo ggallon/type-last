@@ -1,6 +1,6 @@
-import { DashboardHeader } from "@/components/dashboard/header"
-import { DashboardShell } from "@/components/dashboard/shell"
-import { TeamItem } from "@/components/dashboard/team-item"
+import { DashboardHeader } from "@/components/header"
+import { DashboardShell } from "@/components/shell"
+import { TeamItem } from "@/components/team-item"
 
 export default function DashboardTeamsLoading() {
   return (

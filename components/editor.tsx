@@ -3,14 +3,16 @@
 import * as React from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import type { Post } from "@/lib/db"
 import EditorJS from "@editorjs/editorjs"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import TextareaAutosize from "react-textarea-autosize"
 import * as z from "zod"
 import { Icons } from "@/components/icons"
+import { buttonVariants } from "@/ui/button"
 import { toast } from "@/ui/toast"
-import type { Post } from "@/lib/db"
+import { cn } from "@/lib/utils"
 import { postPatchSchema } from "@/lib/validations/post"
 
 interface EditorProps {
@@ -28,7 +30,7 @@ export function Editor({ post }: EditorProps) {
   const [isSaving, setIsSaving] = React.useState<boolean>(false)
   const [isMounted, setIsMounted] = React.useState<boolean>(false)
 
-  async function initializeEditor() {
+  const initializeEditor = React.useCallback(async () => {
     const EditorJS = (await import("@editorjs/editorjs")).default
     const Header = (await import("@editorjs/header")).default
     const Embed = (await import("@editorjs/embed")).default
@@ -60,7 +62,7 @@ export function Editor({ post }: EditorProps) {
         },
       })
     }
-  }
+  }, [post])
 
   React.useEffect(() => {
     if (typeof window !== "undefined") {
@@ -74,15 +76,15 @@ export function Editor({ post }: EditorProps) {
 
       return () => {
         ref.current?.destroy()
-        ref.current = null
+        ref.current = undefined
       }
     }
-  }, [isMounted])
+  }, [isMounted, initializeEditor])
 
   async function onSubmit(data: FormData) {
     setIsSaving(true)
 
-    const blocks = await ref.current.save()
+    const blocks = await ref.current?.save()
 
     const response = await fetch(`/api/posts/${post.id}`, {
       method: "PATCH",
@@ -124,7 +126,7 @@ export function Editor({ post }: EditorProps) {
           <div className="flex items-center space-x-10">
             <Link
               href="/dashboard"
-              className="inline-flex items-center rounded-lg border border-transparent bg-transparent py-2 pl-3 pr-5 text-sm font-medium text-slate-900 hover:border-slate-200 hover:bg-slate-100 focus:z-10 focus:outline-none focus:ring-4 focus:ring-slate-200 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white dark:focus:ring-slate-700"
+              className={cn(buttonVariants({ variant: "ghost" }))}
             >
               <>
                 <Icons.chevronLeft className="mr-2 h-4 w-4" />
@@ -135,10 +137,7 @@ export function Editor({ post }: EditorProps) {
               {post.published ? "Published" : "Draft"}
             </p>
           </div>
-          <button
-            type="submit"
-            className="relative inline-flex h-9 items-center rounded-md border border-transparent bg-brand-500 px-4 py-2 text-sm font-medium text-white hover:bg-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
-          >
+          <button type="submit" className={cn(buttonVariants())}>
             {isSaving && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}

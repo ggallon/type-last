@@ -12,6 +12,7 @@ import {
   HelpCircle,
   Image,
   Loader2,
+  type Icon as LucideIcon,
   MoreVertical,
   Pizza,
   Plus,
@@ -22,7 +23,6 @@ import {
   Users,
   X,
 } from "lucide-react"
-import type { Icon as LucideIcon } from "lucide-react"
 
 export type Icon = LucideIcon
 

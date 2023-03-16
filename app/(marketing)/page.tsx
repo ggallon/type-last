@@ -1,6 +1,8 @@
 import Image from "next/image"
 import Link from "next/link"
+import { buttonVariants } from "@/ui/button"
 import { siteConfig } from "@/config/site"
+import { cn } from "@/lib/utils"
 import hero from "@/public/_static/hero.png"
 
 async function getGitHubStars(): Promise<string | null> {
@@ -47,20 +49,17 @@ export default async function IndexPage() {
           </p>
         </div>
         <div className="flex gap-4">
-          <Link
-            href="/signup"
-            className="relative inline-flex h-11 items-center rounded-md border border-transparent bg-brand-500 px-8 py-2 font-medium text-white hover:bg-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
-          >
+          <Link href="/signup" className={cn(buttonVariants({ size: "lg" }))}>
             Get Started
           </Link>
-          <Link
+          <a
             href={siteConfig.links.github}
             target="_blank"
             rel="noreferrer"
-            className="relative inline-flex h-11 items-center rounded-md border border-slate-200 bg-white px-8 py-2 font-medium text-slate-900 transition-colors hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
+            className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
           >
             GitHub
-          </Link>
+          </a>
         </div>
       </section>
       <hr className="border-slate-200" />
@@ -178,14 +177,14 @@ export default async function IndexPage() {
           <p className="max-w-[85%] leading-normal text-slate-700 sm:text-lg sm:leading-7">
             {siteConfig.name} is open source and powered by open source
             software. The code is available on{" "}
-            <Link
+            <a
               href={siteConfig.links.github}
               target="_blank"
               rel="noreferrer"
               className="underline underline-offset-4"
             >
               GitHub
-            </Link>
+            </a>
             .{" "}
             <Link href="/docs" className="underline underline-offset-4">
               I&apos;m also documenting everything here

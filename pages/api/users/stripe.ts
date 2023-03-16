@@ -14,12 +14,17 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "GET") {
     try {
       const session = await getServerSession(req, res, authOptions)
-      const user = session.user
+      const user = session?.user
+
+      if (!user || !user.email) {
+        throw new Error("User not found.")
+      }
+
       const subscriptionPlan = await getUserSubscriptionPlan(user.id)
 
       // The user is on the pro plan.
       // Create a portal session to manage subscription.
-      if (subscriptionPlan.isPro) {
+      if (subscriptionPlan.isPro && subscriptionPlan.stripeCustomerId) {
         const stripeSession = await stripe.billingPortal.sessions.create({
           customer: subscriptionPlan.stripeCustomerId,
           return_url: billingUrl,
@@ -53,7 +58,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       })
 
       return res.json({ url: stripeSession.url })
-    } catch (error) {
+    } catch (error: any) {
       console.error("error", error.message)
       return res.status(500).end()
     }

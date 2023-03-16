@@ -1,5 +1,6 @@
+import { Metadata } from "next"
 import { notFound, redirect } from "next/navigation"
-import { Editor } from "@/components/dashboard/editor"
+import { Editor } from "@/components/editor"
 import { authOptions } from "@/lib/auth"
 import prisma, { type Post, type User } from "@/lib/db"
 import { getCurrentUser } from "@/lib/session"
@@ -17,7 +18,7 @@ interface EditorPageProps {
   params: { postId: string }
 }
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Editor",
 }
 

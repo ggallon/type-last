@@ -23,7 +23,11 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "PATCH") {
     try {
       const postId = req.query.postId as string
-      const post = await prisma.post.findUnique({
+      const post = await prisma.post.findUniqueOrThrow({
+        select: {
+          id: true,
+          title: true,
+        },
         where: {
           id: postId,
         },

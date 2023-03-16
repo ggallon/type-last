@@ -4,7 +4,16 @@ import * as React from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Icons } from "@/components/icons"
-import { Alert } from "@/ui/alert"
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/ui/alert"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -65,17 +74,19 @@ export function TeamOperations({ team }: TeamtOperationsProps) {
           </DropdownMenuContent>
         </DropdownMenuPortal>
       </DropdownMenu>
-      <Alert open={showDeleteAlert} onOpenChange={setShowDeleteAlert}>
-        <Alert.Content>
-          <Alert.Header>
-            <Alert.Title>
+      <AlertDialog open={showDeleteAlert} onOpenChange={setShowDeleteAlert}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>
               Are you sure you want to delete this team?
-            </Alert.Title>
-            <Alert.Description>This action cannot be undone.</Alert.Description>
-          </Alert.Header>
-          <Alert.Footer>
-            <Alert.Cancel>Cancel</Alert.Cancel>
-            <Alert.Action
+            </AlertDialogTitle>
+            <AlertDialogDescription>
+              This action cannot be undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction
               onClick={async (event) => {
                 event.preventDefault()
                 setIsDeleteLoading(true)
@@ -96,10 +107,10 @@ export function TeamOperations({ team }: TeamtOperationsProps) {
                 <Icons.trash className="mr-2 h-4 w-4" />
               )}
               <span>Delete</span>
-            </Alert.Action>
-          </Alert.Footer>
-        </Alert.Content>
-      </Alert>
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </>
   )
 }
