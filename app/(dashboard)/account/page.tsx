@@ -1,8 +1,8 @@
 import { redirect } from "next/navigation"
-import { DashboardHeader } from "@/components/dashboard/header"
-import { DashboardShell } from "@/components/dashboard/shell"
-import { UserNameForm } from "@/components/dashboard/user-name-form"
-import { UserUserNameForm } from "@/components/dashboard/user-username-form"
+import { DashboardHeader } from "@/components/header"
+import { DashboardShell } from "@/components/shell"
+import { UserNameForm } from "@/components/user-name-form"
+import { UserUserNameForm } from "@/components/user-username-form"
 import { authOptions } from "@/lib/auth"
 import { getCurrentUser } from "@/lib/session"
 

@@ -3,6 +3,7 @@
 import * as React from "react"
 import { UserSubscriptionPlan } from "types"
 import { Icons } from "@/components/icons"
+import { buttonVariants } from "@/ui/button"
 import { Card } from "@/ui/card"
 import { toast } from "@/ui/toast"
 import { cn, formatDate } from "@/lib/utils"
@@ -20,7 +21,7 @@ export function BillingForm({
 }: BillingFormProps) {
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
 
-  async function onSubmit(event) {
+  async function onSubmit(event: React.FormEvent) {
     event.preventDefault()
     setIsLoading(!isLoading)
 
@@ -59,12 +60,7 @@ export function BillingForm({
         <Card.Footer className="flex flex-col items-start space-y-2 md:flex-row md:justify-between md:space-x-0">
           <button
             type="submit"
-            className={cn(
-              "relative inline-flex h-9 items-center justify-center rounded-md border border-transparent bg-brand-500 px-4 py-2 text-center text-sm font-medium text-white hover:bg-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2",
-              {
-                "cursor-not-allowed opacity-60": isLoading,
-              }
-            )}
+            className={cn(buttonVariants())}
             disabled={isLoading}
           >
             {isLoading && (

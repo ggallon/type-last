@@ -1,7 +1,8 @@
+import { Metadata } from "next"
 import { redirect } from "next/navigation"
-import { BillingForm } from "@/components/dashboard/billing-form"
-import { DashboardHeader } from "@/components/dashboard/header"
-import { DashboardShell } from "@/components/dashboard/shell"
+import { BillingForm } from "@/components/billing-form"
+import { DashboardHeader } from "@/components/header"
+import { DashboardShell } from "@/components/shell"
 import { Card } from "@/ui/card"
 import { siteConfig } from "@/config/site"
 import { authOptions } from "@/lib/auth"
@@ -9,7 +10,7 @@ import { getCurrentUser } from "@/lib/session"
 import { stripe } from "@/lib/stripe"
 import { getUserSubscriptionPlan } from "@/lib/subscription"
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Billing - Account",
 }
 

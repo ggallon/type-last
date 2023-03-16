@@ -1,12 +1,13 @@
+import { Metadata } from "next"
 import { redirect } from "next/navigation"
-import { UserAccountNav } from "@/components/dashboard/user-account-nav"
 import { SiteHeader } from "@/components/site-header"
+import { UserAccountNav } from "@/components/user-account-nav"
 import { dashboardConfig } from "@/config/dashboard"
 import { siteConfig } from "@/config/site"
 import { authOptions } from "@/lib/auth"
 import { getCurrentUser } from "@/lib/session"
 
-export const metadata = {
+export const metadata: Metadata = {
   title: {
     default: `Dashboard - ${siteConfig.name}`,
     template: `%s - Dashboard - ${siteConfig.name}`,

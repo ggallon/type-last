@@ -1,10 +1,7 @@
-import { cache } from "react"
-import { redirect } from "next/navigation"
 import { notFound } from "next/navigation"
-import { EmptyPlaceholder } from "@/components/dashboard/empty-placeholder"
-import { DashboardHeader } from "@/components/dashboard/header"
-import { DashboardShell } from "@/components/dashboard/shell"
-import { authOptions } from "@/lib/auth"
+import { EmptyPlaceholder } from "@/components/empty-placeholder"
+import { DashboardHeader } from "@/components/header"
+import { DashboardShell } from "@/components/shell"
 import prisma, { type User } from "@/lib/db"
 import { getCurrentUser } from "@/lib/session"
 
@@ -52,7 +49,13 @@ const getUserOrTeams = async (userId: User["id"], slug: string) => {
   })
 }
 
-export default async function UserOrTeamDashboardPage({ params }) {
+export default async function UserOrTeamDashboardPage({
+  params,
+}: {
+  params: {
+    slug: string
+  }
+}) {
   const user = await getCurrentUser()
   const userOrTeam = await getUserOrTeams(user.id, params.slug)
 

@@ -25,20 +25,20 @@ export function MobileNav({ items, children }: MobileNavProps) {
           <Icons.logo />
           <span className="font-bold">{siteConfig.name}</span>
         </Link>
-        <div className="grid grid-flow-row auto-rows-max text-sm">
+        <nav className="grid grid-flow-row auto-rows-max text-sm">
           {items.map((item, index) => (
             <Link
               key={index}
               href={item.disabled ? "#" : item.href}
               className={cn(
-                "flex w-full items-center rounded-md px-2 py-2 text-sm font-medium hover:underline",
+                "flex w-full items-center rounded-md p-2 text-sm font-medium hover:underline",
                 item.disabled && "cursor-not-allowed opacity-60"
               )}
             >
               {item.title}
             </Link>
           ))}
-        </div>
+        </nav>
         {children}
       </div>
     </div>

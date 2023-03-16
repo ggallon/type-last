@@ -4,7 +4,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { User } from "next-auth"
 import { signOut } from "next-auth/react"
-import { UserAvatar } from "@/components/dashboard/user-avatar"
+import { UserAvatar } from "@/components/user-avatar"
 import { Button } from "@/ui/button"
 import {
   DropdownMenu,
