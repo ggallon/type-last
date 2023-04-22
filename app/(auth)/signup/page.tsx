@@ -17,7 +17,7 @@ export default function SignupPage() {
         href="/login"
         className={cn(
           buttonVariants({ variant: "ghost" }),
-          "absolute top-4 left-4 md:top-8 md:left-8"
+          "absolute left-4 top-4 md:left-8 md:top-8"
         )}
       >
         Login

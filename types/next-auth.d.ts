@@ -1,6 +1,6 @@
-import type { User as PrismaUser } from "@/lib/db"
 import { User } from "next-auth"
 import { JWT } from "next-auth/jwt"
+import type { User as PrismaUser } from "@/lib/db"
 
 declare module "next-auth/jwt" {
   interface JWT {

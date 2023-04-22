@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from "next/server"
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from "next"
+import type { NextRequest, NextResponse } from "next/server"
 
 export type HTTP_METHODS =
   | "OPTIONS"

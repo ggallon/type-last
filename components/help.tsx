@@ -9,7 +9,7 @@ import { siteConfig } from "@/config/site"
 export function Help() {
   return (
     <Popover>
-      <PopoverTrigger className="fixed right-4 bottom-4 inline-flex h-10 w-10 items-center justify-center rounded-full border bg-brand text-white">
+      <PopoverTrigger className="fixed bottom-4 right-4 inline-flex h-10 w-10 items-center justify-center rounded-full border bg-brand text-white">
         <Icons.pizza className="h-5 w-5" />
         <span className="sr-only">Toggle</span>
       </PopoverTrigger>

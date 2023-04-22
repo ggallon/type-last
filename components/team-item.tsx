@@ -1,7 +1,7 @@
 import Link from "next/link"
-import type { MembershipRole, Team } from "@/lib/db"
 import { TeamOperations } from "@/components/team-operations"
 import { Skeleton } from "@/ui/skeleton"
+import type { MembershipRole, Team } from "@/lib/db"
 import { formatDate } from "@/lib/utils"
 
 interface TeamItemProps {
