@@ -13,7 +13,8 @@
     "db:studio": "prisma studio",
     "db:format": "prisma format",
     "postinstall": "prisma generate",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "analyze": "ANALYZE=true next build"
   },
   "dependencies": {
     "@editorjs/code": "2.8.0",
@@ -58,6 +59,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.6.1",
     "@commitlint/config-conventional": "^17.6.1",
+    "@next/bundle-analyzer": "13.3.1",
     "@tailwindcss/typography": "0.5.9",
     "@trivago/prettier-plugin-sort-imports": "4.1.1",
     "@types/bcryptjs": "^2.4.2",
