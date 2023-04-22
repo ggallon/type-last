@@ -35,7 +35,6 @@
     "@radix-ui/react-popover": "1.0.5",
     "@radix-ui/react-toggle": "1.0.2",
     "@vercel/analytics": "1.0.0",
-    "@vercel/og": "0.5.3",
     "bcryptjs": "2.4.3",
     "class-variance-authority": "0.5.2",
     "clsx": "1.2.1",

@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server"
-import { ImageResponse } from "@vercel/og"
+import { ImageResponse } from "next/server"
 import { renderToReadableStream } from "react-dom/server"
 import { withMethodsEdge } from "@/lib/api-middlewares/with-methods"
 import { avatarJsx, avatarSVG } from "@/lib/avatar"
