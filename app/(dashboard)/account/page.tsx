@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import { redirect } from "next/navigation"
 import { DashboardHeader } from "@/components/header"
 import { DashboardShell } from "@/components/shell"
@@ -6,7 +7,7 @@ import { UserUserNameForm } from "@/components/user-username-form"
 import { authOptions } from "@/lib/auth"
 import { getCurrentUser } from "@/lib/session"
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Settings - Account",
 }
 

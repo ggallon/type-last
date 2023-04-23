@@ -1,4 +1,4 @@
-import { UserSubscriptionPlan } from "types"
+import type { UserSubscriptionPlan } from "@/types"
 import { freePlan, proPlan } from "@/config/subscriptions"
 import prisma from "@/lib/db"
 

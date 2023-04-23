@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from "next"
+import type { NextApiRequest, NextApiResponse } from "next"
 import { getServerSession } from "next-auth/next"
 import { proPlan } from "@/config/subscriptions"
 import { withAuthentication } from "@/lib/api-middlewares/with-authentication"

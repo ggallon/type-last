@@ -1,4 +1,5 @@
 import { cache } from "react"
+import type { Metadata } from "next"
 import { redirect } from "next/navigation"
 import { EmptyPlaceholder } from "@/components/empty-placeholder"
 import { DashboardHeader } from "@/components/header"
@@ -9,7 +10,7 @@ import { authOptions } from "@/lib/auth"
 import prisma, { type User } from "@/lib/db"
 import { getCurrentUser } from "@/lib/session"
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Teams - Account",
 }
 

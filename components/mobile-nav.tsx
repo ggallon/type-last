@@ -1,6 +1,6 @@
 import * as React from "react"
 import Link from "next/link"
-import { MainNavItem } from "types"
+import type { MainNavItem } from "@/types"
 import { useLockBody } from "@/hooks/use-lock-body"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"

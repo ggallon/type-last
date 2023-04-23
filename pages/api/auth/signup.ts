@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from "next"
+import type { NextApiRequest, NextApiResponse } from "next"
 import { withMethods } from "@/lib/api-middlewares/with-methods"
 import { withValidation } from "@/lib/api-middlewares/with-validation"
 import prisma, { IdentityProvider } from "@/lib/db"

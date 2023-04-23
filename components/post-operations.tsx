@@ -22,7 +22,7 @@ import {
   DropdownMenuTrigger,
 } from "@/ui/dropdown"
 import { toast } from "@/ui/toast"
-import { type Post } from "@/lib/db"
+import type { Post } from "@/lib/db"
 
 async function deletePost(postId: string) {
   const response = await fetch(`/api/posts/${postId}`, {

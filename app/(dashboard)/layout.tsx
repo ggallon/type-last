@@ -1,4 +1,4 @@
-import { Metadata } from "next"
+import type { Metadata } from "next"
 import { redirect } from "next/navigation"
 import { SiteHeader } from "@/components/site-header"
 import { UserAccountNav } from "@/components/user-account-nav"
