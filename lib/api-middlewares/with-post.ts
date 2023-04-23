@@ -1,7 +1,5 @@
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from "next"
-import { getServerSession } from "next-auth/next"
 import * as z from "zod"
-import { authOptions } from "@/lib/auth"
 import prisma from "@/lib/db"
 
 export const schema = z.object({
@@ -11,14 +9,13 @@ export const schema = z.object({
 export function withPost(handler: NextApiHandler) {
   return async function (req: NextApiRequest, res: NextApiResponse) {
     try {
+      // Check if the user has access to this post.
       const query = await schema.parse(req.query)
 
-      // Check if the user has access to this post.
-      const session = await getServerSession(req, res, authOptions)
       const count = await prisma.post.count({
         where: {
           id: query.postId,
-          authorId: session?.user.id ?? undefined,
+          authorId: req.session.user.id,
         },
       })
 

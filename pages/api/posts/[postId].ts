@@ -1,16 +1,19 @@
 import type { NextApiRequest, NextApiResponse } from "next"
 import * as z from "zod"
+import { withAuthentication } from "@/lib/api-middlewares/with-authentication"
 import { withMethods } from "@/lib/api-middlewares/with-methods"
 import { withPost } from "@/lib/api-middlewares/with-post"
 import prisma from "@/lib/db"
 import { postPatchSchema } from "@/lib/validations/post"
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const postId = req.query.postId as string
+
   if (req.method === "DELETE") {
     try {
       await prisma.post.delete({
         where: {
-          id: req.query.postId as string,
+          id: postId,
         },
       })
 
@@ -22,7 +25,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
   if (req.method === "PATCH") {
     try {
-      const postId = req.query.postId as string
       const post = await prisma.post.findUniqueOrThrow({
         select: {
           id: true,
@@ -58,4 +60,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   }
 }
 
-export default withMethods(["DELETE", "PATCH"], withPost(handler))
+export default withMethods(
+  ["DELETE", "PATCH"],
+  withAuthentication(withPost(handler))
+)
