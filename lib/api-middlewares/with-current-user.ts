@@ -19,6 +19,8 @@ export function withCurrentUser(handler: NextApiHandler) {
         return res.status(403).end()
       }
 
+      req.user = session.user
+
       return handler(req, res)
     } catch (error) {
       if (error instanceof z.ZodError) {
