@@ -1,7 +1,7 @@
-import type {
-  NextFetchEvent,
-  NextMiddleware,
-  NextRequest,
+import {
+  type NextFetchEvent,
+  type NextMiddleware,
+  type NextRequest,
   NextResponse,
 } from "next/server"
 import { type JWT, getToken } from "next-auth/jwt"

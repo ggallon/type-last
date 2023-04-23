@@ -7,3 +7,5 @@ export const userNameSchema = z.object({
 export const userUserNameSchema = z.object({
   username: z.string().min(3).max(48),
 })
+
+export const userSchema = z.union([userNameSchema, userUserNameSchema])
