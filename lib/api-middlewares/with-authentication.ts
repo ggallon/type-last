@@ -10,6 +10,8 @@ export function withAuthentication(handler: NextApiHandler) {
       return res.status(403).end()
     }
 
+    req.session = session
+
     return handler(req, res)
   }
 }
