@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 import { Icons } from "@/components/icons"
+import { Button } from "@/ui/button"
 import { Card } from "@/ui/card"
 import { toast } from "@/ui/toast"
 import { type User } from "@/lib/db"
@@ -97,22 +98,12 @@ export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
             <p className="text-sm text-gray-600">
               Please use 38 characters at maximum.
             </p>
-            <button
-              type="submit"
-              className={cn(
-                "relative inline-flex h-9 items-center rounded-md border border-transparent bg-brand-500 px-4 py-2 text-sm font-medium text-white hover:bg-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2",
-                {
-                  "cursor-not-allowed opacity-60": isSubmitting,
-                },
-                className
-              )}
-              disabled={isSubmitting}
-            >
+            <Button type="submit" disabled={isSubmitting} className="h-9">
               {isSubmitting && (
                 <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
               )}
               <span>Save</span>
-            </button>
+            </Button>
           </div>
         </Card.Footer>
       </Card>
