@@ -18,7 +18,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
     return res.end()
   } catch (error) {
-    console.error("[API][USERS] error: ", error.message)
+    console.error("[API]/users/[userId] error: ", error.message)
     return res.status(422).end()
   }
 }
