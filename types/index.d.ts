@@ -1,6 +1,6 @@
 import type { Icon } from "lucide-react"
 import { Icons } from "@/components/icons"
-import { type User } from "@/lib/db"
+import type { User } from "@/lib/db"
 
 export type NavItem = {
   title: string
