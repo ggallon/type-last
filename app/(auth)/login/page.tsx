@@ -1,4 +1,4 @@
-import { Metadata } from "next"
+import type { Metadata } from "next"
 import Link from "next/link"
 import { Icons } from "@/components/icons"
 import { UserAuthSignin } from "@/components/user-auth-signin"
@@ -39,7 +39,7 @@ export default function LoginPage() {
         <p className="px-8 text-center text-sm text-slate-500 dark:text-slate-400">
           <Link
             href="/signup"
-            className="underline underline-offset-4 hover:text-brand"
+            className="hover:text-brand underline underline-offset-4"
           >
             Don&apos;t have an account? Sign Up
           </Link>

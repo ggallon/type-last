@@ -39,14 +39,14 @@ export default function SignupPage() {
             By clicking continue, you agree to our{" "}
             <Link
               href="#"
-              className="underline underline-offset-4 hover:text-brand"
+              className="hover:text-brand underline underline-offset-4"
             >
               Terms of Service
             </Link>{" "}
             and{" "}
             <Link
               href="#"
-              className="underline underline-offset-4 hover:text-brand"
+              className="hover:text-brand underline underline-offset-4"
             >
               Privacy Policy
             </Link>

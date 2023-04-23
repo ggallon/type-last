@@ -25,7 +25,7 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="flex items-center gap-2 overflow-hidden focus:ring-2 focus:ring-brand-900 focus:ring-offset-2 focus-visible:outline-none">
+      <DropdownMenuTrigger className="focus:ring-brand-900 flex items-center gap-2 overflow-hidden focus:ring-2 focus:ring-offset-2 focus-visible:outline-none">
         <UserAvatar user={{ name: user.name, image: user.image }} />
       </DropdownMenuTrigger>
       <DropdownMenuPortal>

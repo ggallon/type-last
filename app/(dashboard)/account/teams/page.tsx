@@ -72,7 +72,7 @@ export default async function SettingsPage() {
             <EmptyPlaceholder.Description>
               Create a new Proactice Team to collaborate with others.
             </EmptyPlaceholder.Description>
-            <TeamCreateButton className="border-slate-200 bg-white text-brand-900 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2" />
+            <TeamCreateButton className="text-brand-900 border-slate-200 bg-white hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2" />
           </EmptyPlaceholder>
         )}
       </div>
