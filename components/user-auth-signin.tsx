@@ -6,8 +6,11 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { signIn } from "next-auth/react"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
+import { buttonVariants } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { toast } from "@/components/ui/use-toast"
 import { Icons } from "@/components/icons"
-import { toast } from "@/ui/toast"
 import { cn } from "@/lib/utils"
 import { userAuthSchema } from "@/lib/validations/auth"
 
@@ -38,8 +41,8 @@ export function UserAuthSignin({ className, ...props }: UserAuthSigninProps) {
     if (!signInResult?.ok) {
       return toast({
         title: "Something went wrong.",
-        message: "Your sign in request failed. Please try again.",
-        type: "error",
+        description: "Your sign in request failed. Please try again.",
+        variant: "destructive",
       })
     } else if (!signInResult.error) {
       // we're logged in! let's do a hard refresh to the desired url
@@ -48,8 +51,8 @@ export function UserAuthSignin({ className, ...props }: UserAuthSigninProps) {
       // fallback if error not found
       return toast({
         title: "Something went wrong.",
-        message: "Very bad trip.....",
-        type: "error",
+        description: "Very bad trip.....",
+        variant: "destructive",
       })
     }
   }
@@ -59,13 +62,12 @@ export function UserAuthSignin({ className, ...props }: UserAuthSigninProps) {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="grid gap-2">
           <div className="grid gap-1">
-            <label className="sr-only" htmlFor="email">
+            <Label className="sr-only" htmlFor="email">
               Email
-            </label>
-            <input
+            </Label>
+            <Input
               id="email"
               placeholder="name@example.com"
-              className="my-0 mb-2 block h-9 w-full rounded-md border border-slate-300 px-3 py-2 text-sm placeholder:text-slate-400 hover:border-slate-400 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:ring-offset-1"
               type="email"
               autoCapitalize="none"
               autoComplete="email"
@@ -80,13 +82,12 @@ export function UserAuthSignin({ className, ...props }: UserAuthSigninProps) {
             )}
           </div>
           <div className="grid gap-1">
-            <label className="sr-only" htmlFor="password">
+            <Label className="sr-only" htmlFor="password">
               Password
-            </label>
-            <input
+            </Label>
+            <Input
               id="password"
               placeholder="••••••••••••••"
-              className="my-0 mb-2 block h-9 w-full rounded-md border border-slate-300 px-3 py-2 text-sm placeholder:text-slate-400 hover:border-slate-400 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:ring-offset-1"
               type="password"
               autoCapitalize="none"
               autoComplete="password"
@@ -101,7 +102,7 @@ export function UserAuthSignin({ className, ...props }: UserAuthSigninProps) {
             )}
           </div>
           <button
-            className="inline-flex w-full items-center justify-center rounded-lg bg-[#24292F] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#24292F]/90 focus:outline-none focus:ring-4 focus:ring-[#24292F]/50 disabled:opacity-50 dark:hover:bg-[#050708]/30 dark:focus:ring-slate-500"
+            className={cn(buttonVariants(), "w-full")}
             disabled={isSubmitting}
           >
             {isSubmitting && (
@@ -113,7 +114,7 @@ export function UserAuthSignin({ className, ...props }: UserAuthSigninProps) {
       </form>
       <div className="relative">
         <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t"></div>
+          <span className="w-full border-t" />
         </div>
         <div className="relative flex justify-center text-xs uppercase">
           <span className="bg-background px-2 text-muted-foreground">
@@ -122,10 +123,9 @@ export function UserAuthSignin({ className, ...props }: UserAuthSigninProps) {
         </div>
       </div>
       <button
-        type="button"
-        className="inline-flex w-full items-center justify-center rounded-lg border bg-white px-5 py-2.5 text-center text-sm font-medium text-black hover:bg-slate-100 focus:outline-none focus:ring-4 focus:ring-[#24292F]/50 disabled:opacity-50 dark:hover:bg-[#050708]/30 dark:focus:ring-slate-500"
-        onClick={() => signIn("github")}
+        className={cn(buttonVariants({ variant: "outline" }), "w-full")}
         disabled={isSubmitting}
+        onClick={() => signIn("github")}
       >
         <svg
           className="mr-2 h-4 w-4"
