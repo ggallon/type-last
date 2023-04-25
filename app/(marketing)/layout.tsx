@@ -17,10 +17,7 @@ export default async function MarketingLayout({
       <SiteHeader mainNavItem={marketingConfig.mainNav}>
         <Link
           href="/login"
-          className={cn(
-            buttonVariants({ variant: "secondary", size: "sm" }),
-            "px-4"
-          )}
+          className={cn(buttonVariants({ size: "sm" }), "px-4")}
         >
           Login
         </Link>

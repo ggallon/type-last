@@ -36,7 +36,7 @@ export default function LoginPage() {
           </p>
         </div>
         <UserAuthSignin />
-        <p className="px-8 text-center text-sm text-muted-foreground dark:text-slate-400">
+        <p className="px-8 text-center text-sm text-muted-foreground">
           <Link
             href="/signup"
             className="hover:text-brand underline underline-offset-4"
