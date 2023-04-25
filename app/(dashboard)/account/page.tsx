@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { redirect } from "next/navigation"
 import { DashboardHeader } from "@/components/header"
 import { DashboardShell } from "@/components/shell"
+import { UserDeleteForm } from "@/components/user-delete-form"
 import { UserNameForm } from "@/components/user-name-form"
 import { UserUserNameForm } from "@/components/user-username-form"
 import { authOptions } from "@/lib/auth"
@@ -27,6 +28,7 @@ export default async function SettingsPage() {
       <div className="grid gap-10 pb-10">
         <UserUserNameForm user={{ id: user.id, username: user.username! }} />
         <UserNameForm user={{ id: user.id, name: user.name! }} />
+        <UserDeleteForm user={{ id: user.id, username: user.username! }} />
       </div>
     </DashboardShell>
   )
