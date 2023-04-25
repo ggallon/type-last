@@ -88,7 +88,7 @@ export function UserUserNameForm({
         </CardHeader>
         <CardContent>
           <div className="grid gap-1">
-            <Label className="sr-only" htmlFor="name">
+            <Label className="sr-only" htmlFor="username">
               Username
             </Label>
             <Input
