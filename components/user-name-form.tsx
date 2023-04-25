@@ -3,7 +3,6 @@
 import * as React from "react"
 import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useSession } from "next-auth/react"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 import { Button } from "@/components/ui/button"
@@ -33,7 +32,6 @@ type FormData = z.infer<typeof userNameSchema>
 
 export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
   const router = useRouter()
-  const { update } = useSession()
   const {
     handleSubmit,
     register,
@@ -67,7 +65,7 @@ export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
     toast({
       description: "Your name has been updated.",
     })
-    update()
+
     router.refresh()
   }
 
