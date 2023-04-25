@@ -18,6 +18,7 @@ import { Label } from "@/components/ui/label"
 import { toast } from "@/components/ui/use-toast"
 import { Icons } from "@/components/icons"
 import { Button } from "@/ui/button"
+import { siteConfig } from "@/config/site"
 import { type User } from "@/lib/db"
 import { cn } from "@/lib/utils"
 import { userUserNameSchema } from "@/lib/validations/user"
@@ -91,17 +92,21 @@ export function UserUserNameForm({
             <Label className="sr-only" htmlFor="username">
               Username
             </Label>
-            <Input
-              id="username"
-              className="w-[400px]"
-              size={32}
-              {...register("username")}
-            />
-            {errors?.username && (
-              <p className="px-1 text-xs text-red-600">
-                {errors.username.message}
-              </p>
-            )}
+            <div className="mt-2 flex rounded-md shadow-sm">
+              <span className="inline-flex items-center rounded-l-md border border-r-0 border-input px-3 text-muted-foreground sm:text-sm">
+                {siteConfig.domain}/
+              </span>
+              <Input
+                id="username"
+                className="w-[400px] rounded-none rounded-r-md"
+                {...register("username")}
+              />
+              {errors?.username && (
+                <p className="px-1 text-xs text-red-600">
+                  {errors.username.message}
+                </p>
+              )}
+            </div>
           </div>
         </CardContent>
         <CardFooter>
