@@ -39,6 +39,7 @@ export type SiteConfig = {
   links: {
     twitter: string
     github: string
+    githubShort: string
   }
   defaultFrom: string
 }
