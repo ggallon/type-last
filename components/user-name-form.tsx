@@ -91,7 +91,6 @@ export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
             <Input
               id="name"
               className="w-[400px]"
-              size={32}
               disabled={isSubmitting}
               {...register("name")}
             />
