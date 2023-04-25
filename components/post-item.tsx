@@ -19,13 +19,12 @@ export function PostItem({ post }: PostItemProps) {
           {post.title}
         </Link>
         <div>
-          <p className="text-sm text-slate-600">
+          <p className="text-sm text-muted-foreground">
             {formatDate(post.createdAt?.toDateString())}
           </p>
         </div>
       </div>
       <PostOperations post={{ id: post.id, title: post.title }} />
-      {/* <PostDeleteButton post={{ id: post.id, title: post.title }} /> */}
     </div>
   )
 }

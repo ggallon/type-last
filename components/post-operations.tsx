@@ -3,7 +3,6 @@
 import * as React from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { Icons } from "@/components/icons"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -13,15 +12,16 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/ui/alert"
+} from "@/components/ui/alert-dialog"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/ui/dropdown"
-import { toast } from "@/ui/toast"
+} from "@/components/ui/dropdown-menu"
+import { toast } from "@/components/ui/use-toast"
+import { Icons } from "@/components/icons"
 import type { Post } from "@/lib/db"
 
 async function deletePost(postId: string) {
@@ -32,8 +32,8 @@ async function deletePost(postId: string) {
   if (!response?.ok) {
     toast({
       title: "Something went wrong.",
-      message: "Your post was not deleted. Please try again.",
-      type: "error",
+      description: "Your post was not deleted. Please try again.",
+      variant: "destructive",
     })
   }
 
@@ -52,7 +52,7 @@ export function PostOperations({ post }: PostOperationsProps) {
   return (
     <>
       <DropdownMenu>
-        <DropdownMenuTrigger className="flex h-8 w-8 items-center justify-center rounded-md border transition-colors hover:bg-slate-50">
+        <DropdownMenuTrigger className="flex h-8 w-8 items-center justify-center rounded-md border transition-colors hover:bg-muted">
           <Icons.ellipsis className="h-4 w-4" />
           <span className="sr-only">Open</span>
         </DropdownMenuTrigger>
@@ -64,7 +64,7 @@ export function PostOperations({ post }: PostOperationsProps) {
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem
-            className="flex cursor-pointer items-center text-red-600 focus:bg-red-50"
+            className="flex cursor-pointer items-center text-destructive focus:text-destructive"
             onSelect={() => setShowDeleteAlert(true)}
           >
             Delete

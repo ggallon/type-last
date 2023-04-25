@@ -1,5 +1,5 @@
 import Link from "next/link"
-import type { NavItem } from "types"
+import type { NavItem } from "@/types"
 import { Icons } from "@/components/icons"
 import { MainNav } from "@/components/main-nav"
 import { buttonVariants } from "@/ui/button"

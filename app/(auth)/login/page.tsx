@@ -31,12 +31,12 @@ export default function LoginPage() {
           <h1 className="text-2xl font-semibold tracking-tight">
             Welcome back
           </h1>
-          <p className="text-sm text-slate-600">
+          <p className="text-sm text-muted-foreground">
             Enter your email to sign in to your account
           </p>
         </div>
         <UserAuthSignin />
-        <p className="px-8 text-center text-sm text-slate-500 dark:text-slate-400">
+        <p className="px-8 text-center text-sm text-muted-foreground dark:text-slate-400">
           <Link
             href="/signup"
             className="hover:text-brand underline underline-offset-4"

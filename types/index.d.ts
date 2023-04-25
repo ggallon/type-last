@@ -1,6 +1,8 @@
+import type { NextApiRequest, NextApiResponse } from "next"
 import type { Icon } from "lucide-react"
+import type { User } from "next-auth"
 import { Icons } from "@/components/icons"
-import type { User } from "@/lib/db"
+import type { User as PrismaUser } from "@/lib/db"
 
 export type NavItem = {
   title: string
@@ -63,7 +65,26 @@ export type SubscriptionPlan = {
 }
 
 export type UserSubscriptionPlan = SubscriptionPlan &
-  Pick<User, "stripeCustomerId" | "stripeSubscriptionId"> & {
+  Pick<PrismaUser, "stripeCustomerId" | "stripeSubscriptionId"> & {
     stripeCurrentPeriodEnd: number
     isPro: boolean
   }
+
+/**
+ * Next `API` route request
+ */
+export interface NextApiRequestCustom extends NextApiRequest {
+  session: Session
+  user: User & {
+    id: PrismaUser["id"]
+    username: PrismaUser["username"]
+  }
+}
+
+/**
+ * Next `API` route handler
+ */
+export type NextApiHandlerCustom<T = any> = (
+  req: NextApiRequestCustom,
+  res: NextApiResponse<T>
+) => unknown | Promise<unknown>

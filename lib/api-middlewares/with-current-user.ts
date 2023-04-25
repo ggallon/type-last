@@ -1,4 +1,6 @@
-import type { NextApiHandler, NextApiRequest, NextApiResponse } from "next"
+import type { NextApiResponse } from "next"
+import type { NextApiHandlerCustom, NextApiRequestCustom } from "@/types"
+import type { User } from "next-auth"
 import { getServerSession } from "next-auth/next"
 import * as z from "zod"
 import { authOptions } from "@/lib/auth"
@@ -7,8 +9,8 @@ export const schema = z.object({
   userId: z.string(),
 })
 
-export function withCurrentUser(handler: NextApiHandler) {
-  return async function (req: NextApiRequest, res: NextApiResponse) {
+export function withCurrentUser(handler: NextApiHandlerCustom) {
+  return async function (req: NextApiRequestCustom, res: NextApiResponse) {
     try {
       const query = await schema.parse(req.query)
 

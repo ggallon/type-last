@@ -17,10 +17,10 @@ export function TeamItem({ team, role }: TeamItemProps) {
           {team.name}
         </Link>
         <div>
-          <p className="text-sm text-slate-600">
+          <p className="text-sm text-muted-foreground">
             {formatDate(team.createdAt?.toDateString())}
           </p>
-          <p className="text-sm text-slate-600">{role}</p>
+          <p className="text-sm text-muted-foreground">{role}</p>
         </div>
       </div>
       <TeamOperations team={{ id: team.id, slug: team.slug }} />

@@ -6,6 +6,6 @@ export async function getSession() {
 }
 
 export async function getCurrentUser() {
-  const session = await getSession()
+  const session = await getServerSession(authOptions)
   return session?.user
 }

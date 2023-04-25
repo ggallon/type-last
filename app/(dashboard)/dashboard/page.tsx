@@ -42,7 +42,7 @@ export default async function DashboardPage() {
       </DashboardHeader>
       <div>
         {posts?.length ? (
-          <div className="divide-y divide-neutral-200 rounded-md border border-slate-200">
+          <div className="divide-y divide-border rounded-md border">
             {posts.map((post) => (
               <PostItem key={post.id} post={post} />
             ))}
@@ -54,7 +54,7 @@ export default async function DashboardPage() {
             <EmptyPlaceholder.Description>
               You don&apos;t have any posts yet. Start creating content.
             </EmptyPlaceholder.Description>
-            <PostCreateButton className="text-brand-900 border-slate-200 bg-white hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2" />
+            <PostCreateButton variant="outline" />
           </EmptyPlaceholder>
         )}
       </div>

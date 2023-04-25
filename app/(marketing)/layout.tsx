@@ -1,7 +1,7 @@
 import Link from "next/link"
+import { buttonVariants } from "@/components/ui/button"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
-import { buttonVariants } from "@/ui/button"
 import { marketingConfig } from "@/config/marketing"
 import { cn } from "@/lib/utils"
 
@@ -17,7 +17,10 @@ export default async function MarketingLayout({
       <SiteHeader mainNavItem={marketingConfig.mainNav}>
         <Link
           href="/login"
-          className={cn(buttonVariants({ size: "sm" }), "px-4")}
+          className={cn(
+            buttonVariants({ variant: "secondary", size: "sm" }),
+            "px-4"
+          )}
         >
           Login
         </Link>

@@ -3,12 +3,22 @@
 import * as React from "react"
 import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useSession } from "next-auth/react"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
+import { Button } from "@/components/ui/button"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { toast } from "@/components/ui/use-toast"
 import { Icons } from "@/components/icons"
-import { Button } from "@/ui/button"
-import { Card } from "@/ui/card"
-import { toast } from "@/ui/toast"
 import { type User } from "@/lib/db"
 import { cn } from "@/lib/utils"
 import { userNameSchema } from "@/lib/validations/user"
@@ -23,6 +33,7 @@ type FormData = z.infer<typeof userNameSchema>
 
 export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
   const router = useRouter()
+  const { update } = useSession()
   const {
     handleSubmit,
     register,
@@ -48,16 +59,15 @@ export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
     if (!response?.ok) {
       return toast({
         title: "Something went wrong.",
-        message: "Your name was not updated. Please try again.",
-        type: "error",
+        description: "Your name was not updated. Please try again.",
+        variant: "destructive",
       })
     }
 
     toast({
-      message: "Your name has been updated.",
-      type: "success",
+      description: "Your name has been updated.",
     })
-
+    update()
     router.refresh()
   }
 
@@ -68,23 +78,22 @@ export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
       {...props}
     >
       <Card>
-        <Card.Header>
-          <Card.Title>Your Name</Card.Title>
-          <Card.Description>
+        <CardHeader>
+          <CardTitle>Your Name</CardTitle>
+          <CardDescription>
             Please enter your full name or a display name you are comfortable
             with.
-          </Card.Description>
-        </Card.Header>
-        <Card.Content>
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
           <div className="grid gap-1">
-            <label className="sr-only" htmlFor="name">
+            <Label className="sr-only" htmlFor="name">
               Name
-            </label>
-            <input
+            </Label>
+            <Input
               id="name"
-              className="my-0 mb-2 block h-9 w-[350px] rounded-md border border-slate-300 px-3 py-2 text-sm placeholder:text-slate-400 hover:border-slate-400 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:ring-offset-1"
+              className="w-[400px]"
               size={32}
-              name="name"
               disabled={isSubmitting}
               {...register("name")}
             />
@@ -92,9 +101,9 @@ export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
               <p className="px-1 text-xs text-red-600">{errors.name.message}</p>
             )}
           </div>
-        </Card.Content>
-        <Card.Footer>
-          <div className="flex flex-row items-center justify-between">
+        </CardContent>
+        <CardFooter>
+          <div className="flex w-full flex-row items-center justify-between">
             <p className="text-sm text-gray-600">
               Please use 38 characters at maximum.
             </p>
@@ -105,7 +114,7 @@ export function UserNameForm({ user, className, ...props }: UserNameFormProps) {
               <span>Save</span>
             </Button>
           </div>
-        </Card.Footer>
+        </CardFooter>
       </Card>
     </form>
   )

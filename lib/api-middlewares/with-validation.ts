@@ -1,12 +1,13 @@
-import type { NextApiHandler, NextApiRequest, NextApiResponse } from "next"
+import type { NextApiResponse } from "next"
+import type { NextApiHandlerCustom, NextApiRequestCustom } from "@/types"
 import * as z from "zod"
 import type { ZodSchema } from "zod"
 
 export function withValidation<T extends ZodSchema>(
   schema: T,
-  handler: NextApiHandler
+  handler: NextApiHandlerCustom
 ) {
-  return async function (req: NextApiRequest, res: NextApiResponse) {
+  return async function (req: NextApiRequestCustom, res: NextApiResponse) {
     try {
       const body = req.body ? req.body : {}
 

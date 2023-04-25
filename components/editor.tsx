@@ -8,12 +8,13 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import TextareaAutosize from "react-textarea-autosize"
 import * as z from "zod"
+import { toast } from "@/components/ui/use-toast"
 import { Icons } from "@/components/icons"
 import { buttonVariants } from "@/ui/button"
-import { toast } from "@/ui/toast"
 import type { Post } from "@/lib/db"
 import { cn } from "@/lib/utils"
 import { postPatchSchema } from "@/lib/validations/post"
+import "@/styles/editor.css"
 
 interface EditorProps {
   post: Pick<Post, "id" | "title" | "content" | "published">
@@ -102,16 +103,15 @@ export function Editor({ post }: EditorProps) {
     if (!response?.ok) {
       return toast({
         title: "Something went wrong.",
-        message: "Your post was not saved. Please try again.",
-        type: "error",
+        description: "Your post was not saved. Please try again.",
+        variant: "destructive",
       })
     }
 
     router.refresh()
 
     return toast({
-      message: "Your post has been saved.",
-      type: "success",
+      description: "Your post has been saved.",
     })
   }
 
@@ -133,7 +133,7 @@ export function Editor({ post }: EditorProps) {
                 Back
               </>
             </Link>
-            <p className="text-sm text-slate-600">
+            <p className="text-sm text-muted-foreground">
               {post.published ? "Published" : "Draft"}
             </p>
           </div>
@@ -144,20 +144,20 @@ export function Editor({ post }: EditorProps) {
             <span>Save</span>
           </button>
         </div>
-        <div className="prose prose-stone mx-auto w-[800px]">
+        <div className="prose prose-stone mx-auto w-[800px] dark:prose-invert">
           <TextareaAutosize
             autoFocus
             name="title"
             id="title"
             defaultValue={post.title}
             placeholder="Post title"
-            className="w-full resize-none appearance-none overflow-hidden text-5xl font-bold focus:outline-none"
+            className="w-full resize-none appearance-none overflow-hidden bg-transparent text-5xl font-bold focus:outline-none"
             {...register("title")}
           />
           <div id="editor" className="min-h-[500px]" />
           <p className="text-sm text-gray-500">
             Use{" "}
-            <kbd className="rounded-md border bg-slate-50 px-1 text-xs uppercase">
+            <kbd className="rounded-md border bg-muted px-1 text-xs uppercase">
               Tab
             </kbd>{" "}
             to open the command menu.

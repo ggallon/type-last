@@ -1,16 +1,16 @@
 import type { Metadata } from "next"
 import { Inter as FontSans } from "next/font/google"
+import { Toaster } from "@/components/ui/toaster"
 import { Analytics } from "@/components/analytics"
 import { Help } from "@/components/help"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
-import { Toaster } from "@/ui/toast"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 import "@/styles/globals.css"
 
 const fontSans = FontSans({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-sans",
 })
 
 export const metadata: Metadata = {
@@ -29,11 +29,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" className={cn(fontSans.variable, "antialiased")}>
       <head />
-      <body className="min-h-screen bg-white font-sans text-slate-900 dark:bg-slate-900 dark:text-slate-50">
+      <body className="min-h-screen bg-background font-sans">
         {children}
         <Analytics />
         {process.env.NODE_ENV === "production" && <Help />}
-        <Toaster position="bottom-right" />
+        <Toaster />
         <TailwindIndicator />
       </body>
     </html>

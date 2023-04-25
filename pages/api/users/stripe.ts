@@ -1,4 +1,5 @@
-import type { NextApiRequest, NextApiResponse } from "next"
+import type { NextApiResponse } from "next"
+import type { NextApiRequestCustom } from "@/types"
 import { proPlan } from "@/config/subscriptions"
 import { withAuthentication } from "@/lib/api-middlewares/with-authentication"
 import { withMethods } from "@/lib/api-middlewares/with-methods"
@@ -8,7 +9,7 @@ import { absoluteUrl } from "@/lib/utils"
 
 const billingUrl = absoluteUrl("/account/billing")
 
-async function handler(req: NextApiRequest, res: NextApiResponse) {
+async function handler(req: NextApiRequestCustom, res: NextApiResponse) {
   try {
     const user = req.session?.user
 

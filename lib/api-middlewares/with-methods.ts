@@ -1,5 +1,6 @@
-import type { NextApiHandler, NextApiRequest, NextApiResponse } from "next"
+import type { NextApiResponse } from "next"
 import type { NextRequest, NextResponse } from "next/server"
+import type { NextApiHandlerCustom, NextApiRequestCustom } from "@/types"
 
 export type HTTP_METHODS =
   | "OPTIONS"
@@ -16,9 +17,9 @@ const checkMethods = (allowedMethods: HTTP_METHODS[]) =>
 
 export function withMethods(
   allowedMethods: HTTP_METHODS[],
-  handler: NextApiHandler
+  handler: NextApiHandlerCustom
 ) {
-  return async function (req: NextApiRequest, res: NextApiResponse) {
+  return async function (req: NextApiRequestCustom, res: NextApiResponse) {
     const methods = checkMethods(allowedMethods)
 
     if (!req.method || !methods.includes(req.method)) {

@@ -9,7 +9,7 @@ export default function DashboardTeamsLoading() {
         heading="Teams"
         text="Manage the Teams that you're a part of, join suggested ones, or create a new one."
       />
-      <div className="divide-y divide-neutral-200 rounded-md border border-slate-200">
+      <div className="divide-border-200 divide-y rounded-md border">
         <TeamItem.Skeleton />
         <TeamItem.Skeleton />
         <TeamItem.Skeleton />

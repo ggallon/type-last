@@ -5,10 +5,19 @@ import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { toast } from "@/components/ui/use-toast"
 import { Icons } from "@/components/icons"
 import { Button } from "@/ui/button"
-import { Card } from "@/ui/card"
-import { toast } from "@/ui/toast"
 import { type User } from "@/lib/db"
 import { cn } from "@/lib/utils"
 import { userUserNameSchema } from "@/lib/validations/user"
@@ -52,14 +61,13 @@ export function UserUserNameForm({
     if (!response?.ok) {
       return toast({
         title: "Something went wrong.",
-        message: "Your username was not updated. Please try again.",
-        type: "error",
+        description: "Your username was not updated. Please try again.",
+        variant: "destructive",
       })
     }
 
     toast({
-      message: "Your username has been updated.",
-      type: "success",
+      description: "Your username has been updated.",
     })
 
     router.refresh()
@@ -72,22 +80,21 @@ export function UserUserNameForm({
       {...props}
     >
       <Card>
-        <Card.Header>
-          <Card.Title>Your Username</Card.Title>
-          <Card.Description>
+        <CardHeader>
+          <CardTitle>Your Username</CardTitle>
+          <CardDescription>
             This is your URL namespace within Proactice.
-          </Card.Description>
-        </Card.Header>
-        <Card.Content>
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
           <div className="grid gap-1">
-            <label className="sr-only" htmlFor="name">
+            <Label className="sr-only" htmlFor="name">
               Username
-            </label>
-            <input
+            </Label>
+            <Input
               id="username"
-              className="my-0 mb-2 block h-9 w-[350px] rounded-md border border-slate-300 px-3 py-2 text-sm placeholder:text-slate-400 hover:border-slate-400 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-neutral-800 focus:ring-offset-1"
+              className="w-[400px]"
               size={32}
-              name="username"
               {...register("username")}
             />
             {errors?.username && (
@@ -96,9 +103,9 @@ export function UserUserNameForm({
               </p>
             )}
           </div>
-        </Card.Content>
-        <Card.Footer>
-          <div className="flex flex-row items-center justify-between">
+        </CardContent>
+        <CardFooter>
+          <div className="flex w-full flex-row items-center justify-between">
             <p className="text-sm text-gray-600">
               Please use 48 characters at maximum.
             </p>
@@ -109,7 +116,7 @@ export function UserUserNameForm({
               <span>Save</span>
             </Button>
           </div>
-        </Card.Footer>
+        </CardFooter>
       </Card>
     </form>
   )

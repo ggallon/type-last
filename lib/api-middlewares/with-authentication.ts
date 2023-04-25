@@ -1,9 +1,10 @@
-import type { NextApiHandler, NextApiRequest, NextApiResponse } from "next"
+import type { NextApiResponse } from "next"
+import type { NextApiHandlerCustom, NextApiRequestCustom } from "@/types"
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "@/lib/auth"
 
-export function withAuthentication(handler: NextApiHandler) {
-  return async function (req: NextApiRequest, res: NextApiResponse) {
+export function withAuthentication(handler: NextApiHandlerCustom) {
+  return async function (req: NextApiRequestCustom, res: NextApiResponse) {
     const session = await getServerSession(req, res, authOptions)
 
     if (!session) {

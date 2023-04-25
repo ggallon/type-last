@@ -1,10 +1,10 @@
 "use client"
 
 import Image from "next/image"
-import OgImage from "public/og.jpg"
 import { Icons } from "@/components/icons"
 import { Popover, PopoverContent, PopoverTrigger } from "@/ui/popover"
 import { siteConfig } from "@/config/site"
+import OgImage from "@/public/og.jpg"
 
 export function Help() {
   return (
