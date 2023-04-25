@@ -163,7 +163,7 @@ export default async function IndexPage() {
         <div className="mx-auto text-center md:max-w-[58rem]">
           <p className="leading-normal text-muted-foreground sm:text-lg sm:leading-7">
             {siteConfig.name} also includes a blog and a full-featured
-            documentation site built using Contentlayer and MDX.
+            documentation site built using CMS and MDX (coming soon).
           </p>
         </div>
       </section>
@@ -184,7 +184,7 @@ export default async function IndexPage() {
               GitHub
             </a>
             .{" "}
-            <Link href="/docs" className="underline underline-offset-4">
+            <Link href="/#" className="underline underline-offset-4">
               I&apos;m also documenting everything here
             </Link>
             .

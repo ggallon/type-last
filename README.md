@@ -32,7 +32,7 @@ A few people have asked me to turn this into a starter. I think we could do that
 - Loading UI
 - Server and Client Components
 - API Routes and Middlewares
-- Authentication using **NextAuth.js**
+- Authentication using **NextAuth.js** (Password or Github)
 - ORM using **Prisma**
 - Database on **PlanetScale**
 - UI Components built using **Radix UI** and **shadcn/ui**
