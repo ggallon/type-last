@@ -1,11 +1,8 @@
 import { ImageResponse, type NextRequest } from "next/server"
-import { renderToReadableStream } from "react-dom/server"
 import { withMethodsEdge } from "@/lib/api-middlewares/with-methods"
 import { avatarJsx, avatarSVG } from "@/lib/avatar"
 
-export const config = {
-  runtime: "edge",
-}
+export const runtime = "edge"
 
 const isDevelopmentEnvironment =
   (globalThis == null ? undefined : globalThis.process?.env?.NODE_ENV) ===
@@ -13,13 +10,20 @@ const isDevelopmentEnvironment =
 
 export const IMG_TYPE = new Set(["png", "svg"])
 
-async function handler(req: NextRequest) {
+export async function GET(
+  req: NextRequest,
+  {
+    params,
+  }: {
+    params: { slug: string }
+  }
+) {
+  const ReactDOMServer = (await import("react-dom/server")).default
   const { searchParams } = new URL(req.url)
-  const slug = searchParams.get("slug")
   const textOrign = searchParams.get("text")
   const text = textOrign ? decodeURIComponent(textOrign) : ""
   const size = Number(searchParams.get("size") || "120")
-  const [name, type] = slug?.split(".") || []
+  const [name, type] = params.slug?.split(".") || []
   const fileType = type ?? "png"
 
   if (!IMG_TYPE.has(fileType)) {
@@ -29,7 +33,7 @@ async function handler(req: NextRequest) {
   }
 
   if (fileType === "svg") {
-    const stream = await renderToReadableStream(
+    const stream = await ReactDOMServer.renderToReadableStream(
       avatarSVG({ name, size, fileType, text })
     )
     return new Response(stream, {
@@ -47,5 +51,3 @@ async function handler(req: NextRequest) {
     height: size,
   })
 }
-
-export default withMethodsEdge(["GET"], handler)
