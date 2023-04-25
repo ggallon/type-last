@@ -1,6 +1,11 @@
 import type { NextApiResponse } from "next"
 import type { NextRequest, NextResponse } from "next/server"
-import type { NextApiHandlerCustom, NextApiRequestCustom } from "@/types"
+import type {
+  NextApiHandlerCustom,
+  NextApiRequestCustom,
+  NextEdgeHandlerCustom,
+  NextRequestCustom,
+} from "@/types"
 
 export type HTTP_METHODS =
   | "OPTIONS"
@@ -39,16 +44,11 @@ export function withMethods(
   }
 }
 
-type NextEdgeHandler = (
-  req: NextRequest,
-  res: NextResponse
-) => unknown | Promise<unknown>
-
 export function withMethodsEdge(
   allowedMethods: HTTP_METHODS[],
-  handler: NextEdgeHandler
+  handler: NextEdgeHandlerCustom
 ) {
-  return async function (req: NextRequest, res: NextResponse) {
+  return async function (req: NextRequestCustom, res: NextResponse) {
     const methods = checkMethods(allowedMethods)
 
     if (!req.method || !methods.includes(req.method)) {

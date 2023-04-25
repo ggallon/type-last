@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next"
+import type { NextRequest, NextResponse } from "next/server"
 import type { Icon } from "lucide-react"
 import type { User } from "next-auth"
 import { Icons } from "@/components/icons"
@@ -83,9 +84,28 @@ export interface NextApiRequestCustom extends NextApiRequest {
 }
 
 /**
+ * Next `EDGE` route request
+ */
+export interface NextRequestCustom extends NextRequest {
+  session: Session
+  user: User & {
+    id: PrismaUser["id"]
+    username: PrismaUser["username"]
+  }
+}
+
+/**
  * Next `API` route handler
  */
 export type NextApiHandlerCustom<T = any> = (
   req: NextApiRequestCustom,
   res: NextApiResponse<T>
+) => unknown | Promise<unknown>
+
+/**
+ * Next `EDGE` route handler
+ */
+export type NextEdgeHandlerCustom<T = any> = (
+  req: NextRequestCustom,
+  res: NextResponse<T>
 ) => unknown | Promise<unknown>
