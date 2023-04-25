@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "format:write": "prettier --write \"**/*.{css,js,json,jsx,ts,tsx}\"",
+    "format:stage": "prettier --write $(git diff --name-only --diff-filter d | grep -e '\\.[tj]sx\\?$' | xargs)",
     "lint": "TIMING=1 next lint",
     "db:generate": "prisma generate",
     "db:push": "prisma db push --skip-generate",
