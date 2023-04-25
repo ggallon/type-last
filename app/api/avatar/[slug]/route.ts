@@ -8,7 +8,7 @@ const isDevelopmentEnvironment =
   (globalThis == null ? undefined : globalThis.process?.env?.NODE_ENV) ===
   "development"
 
-export const IMG_TYPE = new Set(["png", "svg"])
+const IMG_TYPE = new Set(["png", "svg"])
 
 export async function GET(
   req: NextRequest,
