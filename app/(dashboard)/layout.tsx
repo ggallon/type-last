@@ -1,12 +1,38 @@
 import type { Metadata } from "next"
 import { redirect } from "next/navigation"
-import { SiteHeader } from "@/components/site-header"
+import { DashboardHeader } from "@/components/dashboard-header"
 import { DashboardNav } from "@/components/nav"
 import { UserAccountNav } from "@/components/user-account-nav"
 import { dashboardConfig } from "@/config/dashboard"
 import { siteConfig } from "@/config/site"
 import { authOptions } from "@/lib/auth"
+import prisma, { type User } from "@/lib/db"
 import { getCurrentUser } from "@/lib/session"
+
+const getUserWithTeams = async (userId: User["id"]) => {
+  return await prisma.user.findFirst({
+    where: {
+      id: userId,
+    },
+    select: {
+      id: true,
+      image: true,
+      name: true,
+      username: true,
+      teams: {
+        select: {
+          team: {
+            select: {
+              id: true,
+              name: true,
+              slug: true,
+            },
+          },
+        },
+      },
+    },
+  })
+}
 
 export const metadata: Metadata = {
   title: {
@@ -28,9 +54,11 @@ export default async function RootDashboardLayout({
     redirect(authOptions.pages.signIn)
   }
 
+  const userWithTeams = await getUserWithTeams(user.id)
+
   return (
     <div className="flex min-h-screen flex-col">
-      <SiteHeader mainNavItem={dashboardConfig.mainNav}>
+      <DashboardHeader userWithTeams={userWithTeams} teamSwitcher>
         <UserAccountNav
           user={{
             name: user.name,
@@ -38,7 +66,7 @@ export default async function RootDashboardLayout({
             email: user.email,
           }}
         />
-      </SiteHeader>
+      </DashboardHeader>
       <div className="container grid gap-12 md:grid-cols-[200px_1fr]">
         <aside className="hidden w-[200px] flex-col md:flex">
           <DashboardNav items={dashboardConfig.sidebarNav} />
