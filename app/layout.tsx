@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { Inter as FontSans } from "next/font/google"
+import localFont from "next/font/local"
 import { Toaster } from "@/components/ui/toaster"
 import { Analytics } from "@/components/analytics"
 import { Help } from "@/components/help"
@@ -11,6 +12,11 @@ import "@/styles/globals.css"
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
+})
+
+const fontHeading = localFont({
+  src: "../assets/fonts/CalSans-SemiBold-latin.var.woff2",
+  variable: "--font-heading",
 })
 
 export const metadata: Metadata = {
@@ -27,9 +33,15 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en" className={cn(fontSans.variable, "antialiased")}>
+    <html lang="en">
       <head />
-      <body className="min-h-screen bg-background font-sans">
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          fontSans.variable,
+          fontHeading.variable
+        )}
+      >
         {children}
         <Analytics />
         {process.env.NODE_ENV === "production" && <Help />}
